@@ -1,4 +1,3 @@
-```html
 <p align="center">
   <img src="assets/banner.svg" alt="AgroNova - Smart Farming Assistant" width="100%">
 </p>
@@ -29,7 +28,7 @@
   <b>Live app:</b> <a href="YOUR_STREAMLIT_APP_URL">Try AgroNova</a> &nbsp;|&nbsp;
   <b>Repository:</b> <a href="YOUR_GITHUB_REPOSITORY_URL">View on GitHub</a>
 </p>
-```
+
 ---
 
 ## Overview
