@@ -40,11 +40,11 @@ _DARK = ("--bg:#0B0C0E;--text:#F5F5F7;--muted:#9A9AA1;--card:rgba(255,255,255,.0
          "--accent:#7BD3A0;--accent-soft:rgba(123,211,160,.16);--btn-text:#06150C;--star:#FFFFFF;--star2:rgba(255,255,255,.5);"
          "--shadow:0 1px 0 rgba(255,255,255,.04) inset,0 12px 40px rgba(0,0,0,.45);--blob1:rgba(123,211,160,.11);"
          "--blob2:rgba(110,150,255,.10);--hover:rgba(255,255,255,.06);--twop:.65;")
-_LIGHT = ("--bg:#F5F5F7;--text:#1D1D1F;--muted:#6E6E73;--card:rgba(255,255,255,.72);--card2:rgba(255,255,255,.9);"
-          "--border:rgba(0,0,0,.07);--field:rgba(255,255,255,.9);--pop:#FFFFFF;--side:rgba(255,255,255,.65);"
-          "--accent:#1F7A4D;--accent-soft:rgba(31,122,77,.10);--btn-text:#FFFFFF;--star:#B8903A;--star2:rgba(184,144,58,.5);"
-          "--shadow:0 1px 2px rgba(0,0,0,.04),0 10px 30px rgba(0,0,0,.06);--blob1:rgba(31,122,77,.09);"
-          "--blob2:rgba(0,113,227,.07);--hover:rgba(0,0,0,.04);--twop:.45;")
+_LIGHT = ("--bg:#F4F7F1;--text:#17251D;--muted:#64736A;--card:rgba(255,255,255,.82);--card2:#FFFFFF;"
+          "--border:rgba(28,75,48,.12);--field:#FFFFFF;--pop:#FFFFFF;--side:rgba(250,252,248,.88);"
+          "--accent:#16734B;--accent-soft:rgba(22,115,75,.12);--btn-text:#FFFFFF;--star:#B78332;--star2:rgba(183,131,50,.5);"
+          "--shadow:0 1px 2px rgba(23,53,34,.04),0 12px 34px rgba(23,53,34,.075);--blob1:rgba(72,166,111,.16);"
+          "--blob2:rgba(238,184,91,.12);--hover:rgba(22,115,75,.065);--twop:.35;")
 
 _CSS = """
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
@@ -203,6 +203,49 @@ footer{visibility:hidden;}
 """
 
 
+
+_LIGHT_CSS = """
+/* Light-only botanical polish and consistent high-contrast Streamlit fields. */
+.stApp{background:radial-gradient(ellipse at 8% 0%,rgba(111,183,128,.12),transparent 34%),radial-gradient(ellipse at 96% 12%,rgba(244,190,103,.10),transparent 30%),var(--bg);}
+[data-testid="stHeader"]{background:rgba(244,247,241,.78)!important;}
+[data-testid="stSidebar"]{background:linear-gradient(180deg,rgba(252,254,250,.96),rgba(245,249,242,.92))!important;box-shadow:8px 0 34px rgba(30,75,46,.035);}
+.block-container{padding-bottom:3rem;}.hero{padding:1.6rem 1.2rem 1.8rem;}
+.hero .bubble,.pagehead .bubble{color:#52675A;background:rgba(255,255,255,.92);border-color:rgba(22,115,75,.13);box-shadow:0 8px 24px rgba(23,53,34,.07);}
+.chips span{color:#426151;background:rgba(255,255,255,.78);border-color:rgba(22,115,75,.13);}
+.pagehead{background:linear-gradient(115deg,rgba(255,255,255,.96),rgba(248,252,245,.88));border-color:rgba(22,115,75,.12);box-shadow:0 14px 38px rgba(25,69,42,.075);}
+.pagehead .ptile,.ficon{background:linear-gradient(145deg,#E5F4E8,#F1F8E9);color:#16734B;border:1px solid rgba(22,115,75,.08);}
+[class*="fcard_"],.stat,[class*="st-key-sec_"],.st-key-aside{background:linear-gradient(150deg,rgba(255,255,255,.97),rgba(249,252,247,.9));border-color:rgba(30,91,55,.12);box-shadow:0 10px 28px rgba(23,53,34,.055),0 1px 2px rgba(23,53,34,.035);}
+[class*="fcard_"]:hover{box-shadow:0 18px 38px rgba(23,83,48,.12);}.stat b{color:#176B47;}
+.step{border-top-color:rgba(22,115,75,.18);}.step::before{background:linear-gradient(90deg,#16734B,#A6C96C);}
+.sec-title,.eyebrow{color:#16734B;}.stApp h1,.stApp h2,.stApp h3,.stApp h4{color:#17251D;}
+/* Explicit nested input colours fix inherited dark-theme and white-on-white field bugs. */
+.stApp [data-baseweb="input"],.stApp [data-baseweb="base-input"],.stApp [data-baseweb="textarea"],.stApp [data-baseweb="select"]>div,
+.stApp [data-testid="stTextInput"] [data-baseweb="input"],.stApp [data-testid="stTextArea"] [data-baseweb="textarea"],.stApp [data-testid="stNumberInput"] [data-baseweb="input"]{background:#FFF!important;border:1px solid #D7E3D9!important;border-radius:13px!important;box-shadow:0 1px 2px rgba(25,65,39,.035);}
+.stApp [data-baseweb="input"] input,.stApp [data-baseweb="base-input"] input,.stApp [data-baseweb="textarea"] textarea,.stApp [data-baseweb="select"] input,
+.stApp [data-testid="stTextInput"] input,.stApp [data-testid="stTextArea"] textarea,.stApp [data-testid="stNumberInput"] input{background:transparent!important;color:#20352A!important;-webkit-text-fill-color:#20352A!important;caret-color:#16734B!important;}
+.stApp [data-baseweb="select"] [role="combobox"]{color:#20352A!important;-webkit-text-fill-color:#20352A!important;}
+.stApp input:disabled,.stApp textarea:disabled{background:#F0F4EF!important;color:#78877D!important;-webkit-text-fill-color:#78877D!important;}
+.stApp [data-baseweb="input"]:focus-within,.stApp [data-baseweb="textarea"]:focus-within,.stApp [data-baseweb="select"]>div:focus-within{border-color:#23865A!important;box-shadow:0 0 0 3px rgba(35,134,90,.13),0 2px 8px rgba(23,83,48,.06)!important;}
+.stApp input::placeholder,.stApp textarea::placeholder{color:#89968D!important;-webkit-text-fill-color:#89968D!important;opacity:1!important;}
+.stApp [data-baseweb="select"] svg{color:#587365!important;fill:#587365!important;}
+.stApp [data-baseweb="tag"]{background:#E7F3E8!important;border:1px solid #D4E9D8;}.stApp [data-baseweb="tag"] *{color:#176B47!important;-webkit-text-fill-color:#176B47!important;}
+[data-baseweb="popover"],[data-baseweb="popover"] [data-baseweb="menu"],[data-baseweb="popover"] ul,[role="listbox"]{background:#FFF!important;color:#20352A!important;border:1px solid #DCE7DD!important;border-radius:13px!important;box-shadow:0 14px 34px rgba(24,62,38,.13)!important;}
+[data-baseweb="popover"] li,[data-baseweb="popover"] li *,[role="option"],[role="option"] *{color:#20352A!important;-webkit-text-fill-color:#20352A!important;}
+[data-baseweb="popover"] li:hover,[data-baseweb="popover"] li[aria-selected="true"],[role="option"][aria-selected="true"]{background:#EAF5EB!important;}
+.stApp [data-testid="stWidgetLabel"] p,.stApp [data-testid="stWidgetLabel"] label,.stApp [data-testid="stRadio"] label,.stApp [data-testid="stCheckbox"] label,.stApp [data-testid="stToggle"] label{color:#30483A!important;}
+.stApp [data-testid="stExpander"]{background:rgba(255,255,255,.84)!important;border-color:#DCE7DD!important;}
+.stApp [data-testid="stAlert"]{background:#F8FBF7!important;border-color:#DCE9DD!important;}.stApp [data-testid="stAlert"] *{color:#294333!important;}
+.stApp button[data-testid^="stBaseButton-primary"]{background:linear-gradient(115deg,#16734B,#23865A)!important;box-shadow:0 7px 18px rgba(22,115,75,.19)!important;}
+.stApp button[data-testid^="stBaseButton"]:not([data-testid^="stBaseButton-primary"]){background:#FFF!important;border-color:#D8E4DA!important;}
+.stApp button[data-testid^="stBaseButton"]:not([data-testid^="stBaseButton-primary"]) *{color:#294333!important;-webkit-text-fill-color:#294333!important;}
+.stApp button[data-testid^="stBaseButton"]:hover{box-shadow:0 8px 20px rgba(22,115,75,.12);}
+.stApp [data-testid="stDataFrame"]{border:1px solid #DCE7DD;border-radius:14px;overflow:hidden;}
+.stApp [data-testid="stMetric"]{background:rgba(255,255,255,.75);border:1px solid rgba(22,115,75,.10);border-radius:16px;padding:.8rem 1rem;}
+.stApp ::selection{background:rgba(35,134,90,.2);color:#17251D;}
+@media(max-width:700px){.block-container{padding-left:1rem;padding-right:1rem;}.pagehead{padding:1.2rem;}[data-testid="stForm"]{padding:1.1rem!important;}}
+"""
+
+
 def _min(s: str) -> str:
     """Collapse whitespace so Streamlit's Markdown parser never mistakes our HTML for a code block."""
     return " ".join(s.split())
@@ -215,7 +258,8 @@ def global_css(dark: bool) -> str:
     if dark:
         extra.append('[data-testid="stDataFrame"]{filter:invert(.9) hue-rotate(180deg);border-radius:12px;}')
     root = f".stApp{{{_DARK if dark else _LIGHT}color-scheme:{'dark' if dark else 'light'};}}"
-    return f"<style>{_min(root + _CSS + ''.join(extra))}</style>"
+    theme_css = _CSS if dark else _CSS + _LIGHT_CSS
+    return f"<style>{_min(root + theme_css + ''.join(extra))}</style>"
 
 
 def background_fx(seed: int = 7) -> str:
