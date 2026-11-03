@@ -212,6 +212,11 @@ These tests use fakes. They check AgroNova's logic, not the real Gemini API or h
 - Region-specific data from FAO and local agricultural extension services
 - Offline or SMS access
 
-## Acknowledgements
+## Credits and Acknowledgements
+
+**Name of student:** Adrian Rohith C  
+**Reg. No.:** 1000528  
+**Mentor:** Aruljothi M  
+**Name of the school:** Jain Vidyalaya IBCP World School
 
 Built for the Generative AI **Formative Assessment 2: Designing a Smart Farming Assistance Web App using Generative AI**. Powered by Google Gemini and Streamlit.
