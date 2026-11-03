@@ -242,6 +242,41 @@ _LIGHT_CSS = """
 .stApp [data-testid="stDataFrame"]{border:1px solid #DCE7DD;border-radius:14px;overflow:hidden;}
 .stApp [data-testid="stMetric"]{background:rgba(255,255,255,.75);border:1px solid rgba(22,115,75,.10);border-radius:16px;padding:.8rem 1rem;}
 .stApp ::selection{background:rgba(35,134,90,.2);color:#17251D;}
+
+/* Sidebar-only contrast fix: appearance toggle and answer-language dropdown. */
+[data-testid="stSidebar"] [data-testid="stToggle"] label,
+[data-testid="stSidebar"] [data-testid="stToggle"] label *,
+[data-testid="stSidebar"] [data-testid="stCheckbox"] label,
+[data-testid="stSidebar"] [data-testid="stCheckbox"] label *,
+[data-testid="stSidebar"] [data-testid="stWidgetLabel"],
+[data-testid="stSidebar"] [data-testid="stWidgetLabel"] *{
+  color:#243B2D!important;
+  -webkit-text-fill-color:#243B2D!important;
+  opacity:1!important;
+}
+[data-testid="stSidebar"] [data-testid="stSelectbox"] [data-baseweb="select"]>div,
+[data-testid="stSidebar"] [data-testid="stSelectbox"] [data-baseweb="select"]>div>div{
+  background:#FFFFFF!important;
+  border:1px solid #C9D9CC!important;
+  border-radius:12px!important;
+}
+[data-testid="stSidebar"] [data-testid="stSelectbox"] [data-baseweb="select"],
+[data-testid="stSidebar"] [data-testid="stSelectbox"] [data-baseweb="select"] *,
+[data-testid="stSidebar"] [data-testid="stSelectbox"] [role="combobox"],
+[data-testid="stSidebar"] [data-testid="stSelectbox"] input{
+  color:#243B2D!important;
+  -webkit-text-fill-color:#243B2D!important;
+  opacity:1!important;
+}
+[data-testid="stSidebar"] [data-testid="stSelectbox"] [data-baseweb="select"] svg{
+  color:#243B2D!important;
+  fill:#243B2D!important;
+}
+[data-testid="stSidebar"] [data-testid="stSelectbox"] [data-baseweb="select"]>div:focus-within{
+  border-color:#23865A!important;
+  box-shadow:0 0 0 3px rgba(35,134,90,.14)!important;
+}
+
 @media(max-width:700px){.block-container{padding-left:1rem;padding-right:1rem;}.pagehead{padding:1.2rem;}[data-testid="stForm"]{padding:1.1rem!important;}}
 """
 
