@@ -1,34 +1,4 @@
-<p align="center">
-  <img src="assets/banner.svg" alt="AgroNova - Smart Farming Assistant" width="100%">
-</p>
-
-<p align="center">
-  <img alt="Python" src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white">
-  <img alt="Streamlit" src="https://img.shields.io/badge/Streamlit-1.40%2B-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white">
-  <img alt="Google Gemini" src="https://img.shields.io/badge/Google%20Gemini-API-4285F4?style=for-the-badge&logo=googlegemini&logoColor=white">
-  <img alt="Tests" src="https://img.shields.io/badge/unit%20tests-24%20passing-2EA043?style=for-the-badge">
-</p>
-
-<p align="center">
-  <b>Simple questions in. Clear, region-specific farming advice out.</b><br>
-  A Streamlit web app that uses the Google Gemini API to guide farmers in India, Ghana, Canada and beyond.
-</p>
-
-<p align="center">
-  <a href="#features">Features</a> ·
-  <a href="#screenshots">Screenshots</a> ·
-  <a href="#how-it-works">How it works</a> ·
-  <a href="#quick-start">Quick start</a> ·
-  <a href="#deployment">Deployment</a> ·
-  <a href="#validation-lab">Validation Lab</a> ·
-  <a href="#limitations-and-safety">Safety</a>
-</p>
-
-<p align="center">
-  <b>Live app:</b> <a href="YOUR_STREAMLIT_APP_URL">Try AgroNova</a> &nbsp;|&nbsp;
-  <b>Repository:</b> <a href="YOUR_GITHUB_REPOSITORY_URL">View on GitHub</a>
-</p>
-
+<p align="center"> <img src="assets/banner.svg" alt="AgroNova - Smart Farming Assistant" width="100%"> </p> <p align="center"> <img alt="Python" src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white"> <img alt="Streamlit" src="https://img.shields.io/badge/Streamlit-1.40%2B-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white"> <img alt="Google Gemini" src="https://img.shields.io/badge/Google%20Gemini-API-4285F4?style=for-the-badge&logo=googlegemini&logoColor=white"> <img alt="Tests" src="https://img.shields.io/badge/unit%20tests-24%20passing-2EA043?style=for-the-badge"> </p> <p align="center"> <b>Simple questions in. Clear, region-specific farming advice out.</b><br> A Streamlit web app that uses the Google Gemini API to guide farmers in India, Ghana, Canada and beyond. </p> <p align="center"> <a href="#features">Features</a> · <a href="#screenshots">Screenshots</a> · <a href="#how-it-works">How it works</a> · <a href="#quick-start">Quick start</a> · <a href="#deployment">Deployment</a> · <a href="#validation-lab">Validation Lab</a> · <a href="#limitations-and-safety">Safety</a> </p> <p align="center"> <b>Live app:</b> <code>[ADD YOUR STREAMLIT URL]</code> &nbsp;|&nbsp; <b>Repository:</b> <code>[ADD YOUR GITHUB URL]</code> </p>
 ---
 
 ## Overview
