@@ -24,6 +24,10 @@
 
 ---
 
+## Canva Link For FA - 1
+
+https://canva.link/mlt7hjm79ahdp7q
+
 ## About AgroNova
 
 AgroNova is a Python and Streamlit farming assistant powered by Google Gemini. Farmers can enter their country, crop, soil and water situation and receive advice with explanations and precautions in one of 12 languages.
