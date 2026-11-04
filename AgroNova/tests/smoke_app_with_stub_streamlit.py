@@ -88,7 +88,10 @@ def run(page, submit=False, key_present=True, rich=False, extra_state=None, farm
     g.generate_json = lambda *a, **k: [{"question": "Where did it start?", "options": ["Bottom", "Top", "Not sure"]}]
     g.transcribe_audio = lambda *a, **k: "when to sow paddy"
     g.has_api_key = lambda: key_present
-    runpy.run_path("app.py", run_name="__main__")
+    namespace = runpy.run_path("app.py", run_name="__main__")
+    missing = set(namespace["FEATURES"]) - set(namespace["PAGE_LABELS"])
+    if missing:
+        raise AssertionError(f"Core features missing from navigation: {sorted(missing)}")
     return st
 
 

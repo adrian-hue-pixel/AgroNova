@@ -36,6 +36,7 @@ PAGE_LABELS = {
     "doctor": "Plant Doctor", "ask": "Ask by Voice", "calendar": "Crop Calendar", "market": "Market Prices",
     "journal": "Farm Journal", "crop": FEATURES["crop"]["title"], "soil": FEATURES["soil"]["title"],
     "sustainable": FEATURES["sustainable"]["title"], "pest": FEATURES["pest"]["title"] + " (text)",
+    "weather": FEATURES["weather"]["title"] + " (your weather)",
     "guides": "Guides & Offline", "lab": "Validation Lab", "about": "About & Safety",
 }
 PAGES = list(PAGE_LABELS)

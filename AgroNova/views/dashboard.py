@@ -11,7 +11,7 @@ TOOLS = [
     ("doctor", "doctor", "Plant Doctor", "Upload a leaf photo and answer a few questions."),
     ("ask", "ask", "Ask by Voice", "Speak your question and listen to the answer."),
     ("calendar", "calendar", "Crop Calendar", "What to do next, with reminders."),
-    ("crop", "crop", "Crop Recommendation", "Which crops suit your land, season and water."),
+    ("crop", "crop", "Crop choices", "Which crops suit your land, season and water."),
     ("market", "market", "Market Prices", "Compare what may be worth growing."),
     ("journal", "journal", "Farm Journal", "Plantings, photos, treatments and harvests."),
     ("soil", "soil", "Soil & Fertilizer", "Check your soil and how to improve it."),

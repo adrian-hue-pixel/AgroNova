@@ -123,7 +123,7 @@ class GeminiLogicTests(unittest.TestCase):
         self.Client.response = Resp("  hello farmer  ")
         self.assertEqual(self.g.generate_advice("q"), "hello farmer")
         called = self.Client.last.called
-        self.assertEqual(called["model"], "gemini-3.8-flash")
+        self.assertEqual(called["model"], "gemini-3.5-flash-lite")
         self.assertEqual(called["config"].kw["temperature"], 0.3)
         self.assertEqual(called["config"].kw["max_output_tokens"], 8192)
 

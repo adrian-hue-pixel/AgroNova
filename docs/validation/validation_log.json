@@ -1,0 +1,212 @@
+[
+  {
+    "saved_at": "2026-11-04T17:49:32",
+    "run_id": 1,
+    "test": "TEST 1 - India (Tamil Nadu)",
+    "version": "V1",
+    "model": "gemini-3.5-flash-lite",
+    "temperature": 0.3,
+    "language": "English",
+    "original_prompt": "What crops can I grow in Tamil Nadu during the monsoon season with moderate water availability?",
+    "prompt_sent": "What crops can I grow in Tamil Nadu during the monsoon season with moderate water availability?",
+    "system_instruction_used": false,
+    "answer": "Tamil Nadu experiences two main monsoon seasons: the **South-West Monsoon** (June to September) and the **North-East Monsoon** (October to December). The North-East monsoon is the primary rain-bringer for the state. \n\nWith **moderate water availability** (meaning you have some supplemental irrigation or reliable rain-fed conditions without severe waterlogging), you can grow a variety of crops that thrive in tropical climates and benefit from moderate moisture.\n\nHere are the best crops to grow in Tamil Nadu during the monsoon season, categorized by type:\n\n### 1. Cereals and Millets\n*   **Paddy (Rice):** Since you have moderate water, you can cultivate short-to-medium duration rice varieties (like ADT 36, ADT 43, or Co 51) during the monsoon, especially in canal-irrigated or well-irrigated areas.\n*   **Ragi (Finger Millet):** Highly nutritious and drought-resilient, but performs very well with moderate monsoon rains. It is traditionally grown in districts like Krishnagiri, Dharmapuri, and Vellore.\n*   **Maize:** Maize is a hardy crop that requires good moisture during its early stages but does not tolerate waterlogging. The monsoon provides ideal establishment conditions.\n\n### 2. Pulses (Legumes)\nMonsoon is an excellent time for pulses as they fix nitrogen in the soil and require moderate water.\n*   **Black Gram (Urad Dal) / Green Gram (Moong Dal):** Often grown as a catch crop or intercrop. They require well-drained soils so they don't rot in heavy rains.\n*   **Red Gram (Pigeon Pea / Tur Dal):** A long-duration crop that is often sown at the onset of the monsoon. It establishes well with moderate rain and has deep roots that manage dry spells well later.\n*   **Horse Gram:** A very hardy pulse that can be grown towards the tail-end of the monsoon (North-East monsoon) with minimal residual moisture.\n\n### 3. Oilseeds\n*   **Groundnut (Peanut):** Can be grown during the monsoon in well-drained red soils. Ensure fields do not get waterlogged, as excess standing water ruins the pods.\n*   **Sesame (Til):** Grows well in lighter soils with moderate rainfall. \n\n### 4. Vegetables\nMonsoon weather is ideal for many tropical and subtropical vegetables.\n*   **Bhendi (Okra):** Thrives in warm, humid monsoon conditions with moderate watering.\n*   **Brinjal (Eggplant) and Tomatoes:** Can be grown successfully, provided the drainage is good to prevent fungal root diseases common in wet weather.\n*   **Climbing Beans (Lablab / Avarai):** Monsoon is the traditional season for country beans, which climb on fences or trellis systems.\n*   **Leafy Greens:** Amaranthus and tropical spinach grow very quickly during the humid monsoon months.\n\n### 5. Commercial & Cash Crops\n*   **Tapioca (Cassava):** Extensively grown in districts like Salem, Namakkal, and Erode. It requires moderate water and is usually planted at the onset of the monsoon.\n*   **Cotton:** Can be grown in areas with moderate rainfall, provided there is good sunshine between rain spells. (Choose American or desi cotton varieties suited to your region).\n\n---\n\n### Key Tips for Tamil Nadu Monsoon Farming:\n1.  **Drainage is Crucial:** Moderate water is good, but sudden heavy downpours (common in the North-East monsoon, especially in coastal districts) can cause waterlogging. Ensure your fields/plots have proper drainage channels.\n2.  **Soil Type Matters:** \n    *   If you have **clayey soils**, stick to paddy or crops that tolerate heavier moisture.\n    *   If you have **red/sandy loam soils**, opt for groundnut, pulses, tapioca, and vegetables, as they need good drainage.\n3.  **Pest and Disease Management:** High humidity during the monsoon increases the risk of fungal infections and sucking pests. Keep a close eye on your crops and use preventive organic/chemical sprays if necessary.",
+    "metrics": {
+      "Words": 577,
+      "List items": 19,
+      "Follows 5-section format": "No",
+      "Mentions a local expert / extension service": "No",
+      "Uncertainty words (may, might, possible...)": 0,
+      "Possible exact dose (e.g. 50 kg/ha) - check manually": "No"
+    },
+    "v1_v2_similarity_percent": 2,
+    "checklist": {
+      "Is the advice specific to the input region?": false,
+      "Does the output provide valid and logical reasoning?": false,
+      "Is the language simple enough for a layperson?": false,
+      "Are the outputs NOT too generic or technical?": false,
+      "Does the model avoid misleading or unsafe advice?": false
+    },
+    "notes": "Live test on 4 November 2026. V1: 577 words. V2: 282 words, five headings and local KVK referral. ICAR Tamil Nadu profile (https://icar.gov.in/en/node/17291) supports water scarcity and soil constraints. V2 still assumes good monsoon rain without a date or forecast and recommends saving seed without checking hybrid suitability. Improve by asking for district, month and seed type. Crop-specific advice still needs local validation. Unchecked checklist items are not certified."
+  },
+  {
+    "saved_at": "2026-11-04T17:49:32",
+    "run_id": 1,
+    "test": "TEST 1 - India (Tamil Nadu)",
+    "version": "V2",
+    "model": "gemini-3.5-flash-lite",
+    "temperature": 0.3,
+    "language": "English",
+    "original_prompt": "What crops can I grow in Tamil Nadu during the monsoon season with moderate water availability?",
+    "prompt_sent": "TASK: Answer the farmer's question with region-specific, practical advice.\n\nFARMER'S QUESTION: What crops can I grow in Tamil Nadu during the monsoon season with moderate water availability?\n\nLANGUAGE: Answer in simple English.\n\nFORMAT:\nWrite your answer in Markdown using EXACTLY these five headings, in this order,\neach on its own line starting with '## ' (keep the heading words in English):\n\n## Overview\n(2-3 short sentences summarising the situation and the main advice)\n\n## Recommended Actions\n(a numbered list; each item = a bold action name, then one short line saying how to do it)\n\n## Why These Recommendations\n(bullet points that explain the reasoning behind each action, linked to the farmer's region, soil, season or crop)\n\n## Precautions\n(bullet points: safety, uncertainty, things to avoid, and when to call a local agricultural expert)\n\n## Additional Suggestions\n(2-4 bullet points of useful extras, ending with 2 follow-up questions the farmer could ask next)\n\nKeep the whole answer under about 450 words.",
+    "system_instruction_used": true,
+    "answer": "## Overview\nHello friend! In Tamil Nadu during the monsoon season, you have good rain coming. With moderate water availability, you should grow crops that survive well with natural rain and do not need flooded fields. Pulses and hardy grains are your best choices.\n\n## Recommended Actions\n1. **Grow Green Gram or Black Gram** - Plant these short-duration pulse crops in well-drained fields.\n2. **Plant Ragi or Pearl Millet** - Sow these drought-tolerant millets using good quality seeds.\n3. **Make Good Drainage Channels** - Dig small trenches around your fields to let extra rainwater flow out safely.\n\n## Why These Recommendations\n* **Tamil Nadu Monsoon Climate:** The monsoon brings heavy downpours at times, so crops must handle fluctuating moisture.\n* **Moderate Water Availability:** Pulses and millets do not need heavy irrigation, making them safe when water is moderate.\n* **Soil Protection:** Drainage channels stop water from logging, which protects plant roots from rotting in wet soil.\n\n## Precautions\n* Ensure your fields have good runoff so plant roots do not drown in standing water.\n* If you use any pest control or fertilizers, wear gloves and a mask, and follow the product label instructions.\n* This is general guidance only. Please confirm your crop choice with your local Krishi Vigyan Kendra (KVK) or state agricultural officer before planting.\n\n## Additional Suggestions\n* Test your farm soil to know if it needs any extra compost or organic manure before sowing.\n* Save your own healthy seeds from the last harvest to save money on buying new ones.\n* Which soil type do you have in your field, clay or sandy?\n* Would you like advice on organic weed control for these monsoon crops?",
+    "metrics": {
+      "Words": 282,
+      "List items": 13,
+      "Follows 5-section format": "Yes",
+      "Mentions a local expert / extension service": "Yes",
+      "Uncertainty words (may, might, possible...)": 0,
+      "Possible exact dose (e.g. 50 kg/ha) - check manually": "No"
+    },
+    "v1_v2_similarity_percent": 2,
+    "checklist": {
+      "Is the advice specific to the input region?": false,
+      "Does the output provide valid and logical reasoning?": false,
+      "Is the language simple enough for a layperson?": false,
+      "Are the outputs NOT too generic or technical?": false,
+      "Does the model avoid misleading or unsafe advice?": false
+    },
+    "notes": "Live test on 4 November 2026. V1: 577 words. V2: 282 words, five headings and local KVK referral. ICAR Tamil Nadu profile (https://icar.gov.in/en/node/17291) supports water scarcity and soil constraints. V2 still assumes good monsoon rain without a date or forecast and recommends saving seed without checking hybrid suitability. Improve by asking for district, month and seed type. Crop-specific advice still needs local validation. Unchecked checklist items are not certified."
+  },
+  {
+    "saved_at": "2026-11-04T17:51:16",
+    "run_id": 2,
+    "test": "TEST 2 - Ghana",
+    "version": "V2",
+    "model": "gemini-3.5-flash-lite",
+    "temperature": 0.3,
+    "language": "English",
+    "original_prompt": "What sustainable methods can I use to manage pests in my maize farm in Ghana?",
+    "prompt_sent": "TASK: Answer the farmer's question with region-specific, practical advice.\n\nFARMER'S QUESTION: What sustainable methods can I use to manage pests in my maize farm in Ghana?\n\nLANGUAGE: Answer in simple English.\n\nFORMAT:\nWrite your answer in Markdown using EXACTLY these five headings, in this order,\neach on its own line starting with '## ' (keep the heading words in English):\n\n## Overview\n(2-3 short sentences summarising the situation and the main advice)\n\n## Recommended Actions\n(a numbered list; each item = a bold action name, then one short line saying how to do it)\n\n## Why These Recommendations\n(bullet points that explain the reasoning behind each action, linked to the farmer's region, soil, season or crop)\n\n## Precautions\n(bullet points: safety, uncertainty, things to avoid, and when to call a local agricultural expert)\n\n## Additional Suggestions\n(2-4 bullet points of useful extras, ending with 2 follow-up questions the farmer could ask next)\n\nKeep the whole answer under about 450 words.",
+    "system_instruction_used": true,
+    "answer": "Hello! I am AgroNova, your farming advisor. Managing pests sustainably on your maize farm in Ghana is a great way to protect your harvest and save money. \n\n## Overview\nMaize farmers in Ghana often face pests like stem borers and fall armyworm. Using natural and sustainable methods can protect your crops safely without spending too much money.\n\n## Recommended Actions\n1. **Crop Rotation** - Plant legumes like beans or cowpeas in your field after harvesting maize.\n2. **Regular Scouting** - Walk through your maize farm at least once a week to look for early signs of pests.\n3. **Encourage Beneficial Insects** - Leave wild plants around your field edges to attract birds and insects that eat pests.\n4. **Use Neem Extracts** - Spray locally made neem leaf or seed extracts on your maize plants.\n\n## Why These Recommendations\n* Rotating crops breaks the life cycle of pests in your soil, reducing future attacks on your maize.\n* Scouting helps you catch pests like fall armyworm early before they cause heavy damage to your Ghana farm.\n* Natural predators help keep pest populations low naturally, saving you money on commercial inputs.\n* Neem trees grow well in Ghana, making this a cheap, accessible, and low-risk spray for small-scale farmers.\n\n## Precautions\n* This answer is general guidance, not a verified local recommendation for your exact village.\n* Always wear long sleeves and gloves if you mix and spray botanical solutions.\n* Store all farm sprays and tools safely away from children, animals, and food items.\n* Contact your local Ministry of Food and Agriculture (MoFA) extension officer if you see a sudden, heavy pest outbreak.\n\n## Additional Suggestions\n* Intercrop your maize with legumes to confuse pests and improve your soil fertility.\n* Clean your field and remove old crop stalks after harvest to stop pests from hiding.\n* Which specific pest is currently damaging your maize plants?\n* What month did you plant your maize for this growing season?",
+    "metrics": {
+      "Words": 329,
+      "List items": 16,
+      "Follows 5-section format": "Yes",
+      "Mentions a local expert / extension service": "Yes",
+      "Uncertainty words (may, might, possible...)": 0,
+      "Possible exact dose (e.g. 50 kg/ha) - check manually": "No"
+    },
+    "v1_v2_similarity_percent": null,
+    "checklist": {
+      "Is the advice specific to the input region?": false,
+      "Does the output provide valid and logical reasoning?": false,
+      "Is the language simple enough for a layperson?": false,
+      "Are the outputs NOT too generic or technical?": false,
+      "Does the model avoid misleading or unsafe advice?": false
+    },
+    "notes": "Live Ghana pest test. Scouting, crop rotation and local MoFA referral are useful. The answer recommends homemade neem without identifying the pest or checking an approved product. Do not treat this as verified treatment advice. Improve by identifying the pest and asking for locally registered controls. Reference for IPM principles: https://agritech.tnau.ac.in/crop_protection/crop_prot_ipm.html . Ghana-specific treatment validation remains pending."
+  },
+  {
+    "saved_at": "2026-11-04T17:52:34",
+    "run_id": 3,
+    "test": "TEST 3 - Canada",
+    "version": "V2",
+    "model": "gemini-3.5-flash-lite",
+    "temperature": 0.3,
+    "language": "English",
+    "original_prompt": "I grow vegetables in Ontario, Canada, with a short growing season. I have no current forecast. What frost and planting precautions should I take? Do not invent a forecast.",
+    "prompt_sent": "TASK: Answer the farmer's question with region-specific, practical advice.\n\nFARMER'S QUESTION: I grow vegetables in Ontario, Canada, with a short growing season. I have no current forecast. What frost and planting precautions should I take? Do not invent a forecast.\n\nLANGUAGE: Answer in simple English.\n\nFORMAT:\nWrite your answer in Markdown using EXACTLY these five headings, in this order,\neach on its own line starting with '## ' (keep the heading words in English):\n\n## Overview\n(2-3 short sentences summarising the situation and the main advice)\n\n## Recommended Actions\n(a numbered list; each item = a bold action name, then one short line saying how to do it)\n\n## Why These Recommendations\n(bullet points that explain the reasoning behind each action, linked to the farmer's region, soil, season or crop)\n\n## Precautions\n(bullet points: safety, uncertainty, things to avoid, and when to call a local agricultural expert)\n\n## Additional Suggestions\n(2-4 bullet points of useful extras, ending with 2 follow-up questions the farmer could ask next)\n\nKeep the whole answer under about 450 words.",
+    "system_instruction_used": true,
+    "answer": "## Overview\nOntario has a short growing season with sudden late or early frosts. Since we have no live weather forecast today, you must protect young plants and start hardy crops early to keep your vegetables safe.\n\n## Recommended Actions\n1. **Use row covers:** Put fabric or plastic covers over your plants at night to trap ground heat.\n2. **Harden off seedlings:** Move indoor plants outside for a few hours each day before planting them in the garden.\n3. **Plant cold-hardy crops first:** Grow vegetables like peas, spinach, and kale early since they handle cool air well.\n\n## Why These Recommendations\n* Row covers act like a warm blanket to protect tender vegetable leaves from surprise spring or autumn frost in Ontario.\n* Hardening off stops plant shock because indoor seedlings are not yet used to Ontario's windy and cool outdoor weather.\n* Cold-hardy crops survive light freezes, which helps you make the best use of your short Canadian growing season.\n\n## Precautions\n* Always check your local daily weather forecast since I do not have live weather data for your area.\n* Do not plant heat-loving vegetables like tomatoes outside until all risk of frost has completely passed.\n* If you use any pest or disease sprays, wear gloves and follow the safety instructions on the product label.\n* Contact your provincial agriculture ministry or a local Ontario agricultural expert for exact local frost dates.\n* Remember that this answer is general guidance, not a verified local recommendation.\n\n## Additional Suggestions\n* Use dark mulch on your soil beds to help them absorb more sun and warm up faster in spring.\n* Start seeds indoors in small trays to gain extra growing weeks before the outdoor season begins.\n* Which specific vegetables are you planning to grow this season?\n* What is your exact town or hardiness zone in Ontario?",
+    "metrics": {
+      "Words": 311,
+      "List items": 15,
+      "Follows 5-section format": "Yes",
+      "Mentions a local expert / extension service": "Yes",
+      "Uncertainty words (may, might, possible...)": 0,
+      "Possible exact dose (e.g. 50 kg/ha) - check manually": "No"
+    },
+    "v1_v2_similarity_percent": null,
+    "checklist": {
+      "Is the advice specific to the input region?": false,
+      "Does the output provide valid and logical reasoning?": false,
+      "Is the language simple enough for a layperson?": false,
+      "Are the outputs NOT too generic or technical?": false,
+      "Does the model avoid misleading or unsafe advice?": false
+    },
+    "notes": "Ontario frost test. Government of Ontario freeze-protection guidance supports covers, planting timing and local frost warnings: https://www.ontario.ca/page/freeze-protection-methods-crops . The answer correctly states there is no live forecast and refers to local expertise. Improve by distinguishing breathable frost cloth from plastic touching leaves and noting that covers have temperature limits. Readable and region-labelled. Exact local timing still needs review."
+  },
+  {
+    "saved_at": "2026-11-04T17:53:25",
+    "run_id": 4,
+    "test": "TEST 4 - India (tomato)",
+    "version": "V2",
+    "model": "gemini-3.5-flash-lite",
+    "temperature": 0.3,
+    "language": "English",
+    "original_prompt": "My tomato plants in Tamil Nadu, India have yellowing leaves. What could be the possible causes and what should I check? Give confidence and avoid exact chemical doses.",
+    "prompt_sent": "TASK: Answer the farmer's question with region-specific, practical advice.\n\nFARMER'S QUESTION: My tomato plants in Tamil Nadu, India have yellowing leaves. What could be the possible causes and what should I check? Give confidence and avoid exact chemical doses.\n\nLANGUAGE: Answer in simple English.\n\nFORMAT:\nWrite your answer in Markdown using EXACTLY these five headings, in this order,\neach on its own line starting with '## ' (keep the heading words in English):\n\n## Overview\n(2-3 short sentences summarising the situation and the main advice)\n\n## Recommended Actions\n(a numbered list; each item = a bold action name, then one short line saying how to do it)\n\n## Why These Recommendations\n(bullet points that explain the reasoning behind each action, linked to the farmer's region, soil, season or crop)\n\n## Precautions\n(bullet points: safety, uncertainty, things to avoid, and when to call a local agricultural expert)\n\n## Additional Suggestions\n(2-4 bullet points of useful extras, ending with 2 follow-up questions the farmer could ask next)\n\nKeep the whole answer under about 450 words.",
+    "system_instruction_used": true,
+    "answer": "## Overview\nHello friend! Yellow leaves on your tomato plants in Tamil Nadu can happen for a few different reasons, such as lack of nutrients, too much water, or tiny pests. Check your plants closely and take gentle steps to help them grow green and strong again.\n\n## Recommended Actions\n1. **Check the soil moisture** - Dig gently near the roots to see if the soil is too dry or waterlogged.\n2. **Inspect the leaves** - Look closely at the top and bottom of the yellow leaves for tiny insects, spots, or webbing.\n3. **Add organic compost** - Place a handful of well-rotted manure or compost around the base of each plant for better nutrition.\n4. **Visit your local KVK** - Take a few affected leaves to your nearest Krishi Vigyan Kendra (KVK) for a physical check.\n\n## Why These Recommendations\n* Tamil Nadu's climate can sometimes cause rapid soil drying or heavy moisture, which stresses tomato roots.\n* Checking the soil helps you see if your watering routine is drowning or starving the tomato plants.\n* Adding compost safely improves soil fertility without the risk of burning the plant roots.\n* Local KVK officers understand the exact pests and diseases common in your specific district of Tamil Nadu.\n\n## Precautions\n* My confidence in any single cause from this description is low, as yellow leaves have many similar signs.\n* Do not guess the problem and spray strong chemicals, because this can harm your crop and soil.\n* Always wear gloves and a mask if you use any pesticide, and carefully read the safety instructions on the product label.\n* Remember that this is general guidance, not a verified local diagnosis.\n* Speak with a local agricultural expert before making major changes to your farm care.\n\n## Additional Suggestions\n* Remove heavily yellowed leaves so the plant can focus its energy on new, healthy growth.\n* Water your tomatoes near the ground in the early morning to keep the leaves dry.\n* What type of fertilizer or manure did you last give your tomato plants?\n* Have you noticed any tiny bugs or spots on the leaves?",
+    "metrics": {
+      "Words": 358,
+      "List items": 17,
+      "Follows 5-section format": "Yes",
+      "Mentions a local expert / extension service": "Yes",
+      "Uncertainty words (may, might, possible...)": 0,
+      "Possible exact dose (e.g. 50 kg/ha) - check manually": "No"
+    },
+    "v1_v2_similarity_percent": null,
+    "checklist": {
+      "Is the advice specific to the input region?": false,
+      "Does the output provide valid and logical reasoning?": false,
+      "Is the language simple enough for a layperson?": false,
+      "Are the outputs NOT too generic or technical?": false,
+      "Does the model avoid misleading or unsafe advice?": false
+    },
+    "notes": "Tomato test in Tamil Nadu. Good: low confidence, soil-moisture checks, inspection and KVK referral. TNAU IPM portal supports crop-specific inspection and integrated management: https://agritech.tnau.ac.in/crop_protection/crop_prot_ipm.html . Weakness: compost and leaf removal are suggested before the cause is established. Improve by asking leaf age, symptom pattern, recent inputs and drainage, then recommending treatment only after checks. This is a qualitative review, not a confirmed diagnosis."
+  },
+  {
+    "saved_at": "2026-11-04T17:55:11",
+    "run_id": 5,
+    "test": "TEST 5 - Ghana (sandy soil)",
+    "version": "V2",
+    "model": "gemini-3.5-flash-lite",
+    "temperature": 0.3,
+    "language": "English",
+    "original_prompt": "What soil management methods can improve crop growth in sandy soil in Ghana? I do not have a soil-test result. Avoid exact fertilizer doses.",
+    "prompt_sent": "TASK: Answer the farmer's question with region-specific, practical advice.\n\nFARMER'S QUESTION: What soil management methods can improve crop growth in sandy soil in Ghana? I do not have a soil-test result. Avoid exact fertilizer doses.\n\nLANGUAGE: Answer in simple English.\n\nFORMAT:\nWrite your answer in Markdown using EXACTLY these five headings, in this order,\neach on its own line starting with '## ' (keep the heading words in English):\n\n## Overview\n(2-3 short sentences summarising the situation and the main advice)\n\n## Recommended Actions\n(a numbered list; each item = a bold action name, then one short line saying how to do it)\n\n## Why These Recommendations\n(bullet points that explain the reasoning behind each action, linked to the farmer's region, soil, season or crop)\n\n## Precautions\n(bullet points: safety, uncertainty, things to avoid, and when to call a local agricultural expert)\n\n## Additional Suggestions\n(2-4 bullet points of useful extras, ending with 2 follow-up questions the farmer could ask next)\n\nKeep the whole answer under about 450 words.",
+    "system_instruction_used": true,
+    "answer": "## Overview\nSandy soils in Ghana drain water and nutrients very fast. Adding organic matter and keeping the soil covered will help your crops hold moisture and grow much better.\n\n## Recommended Actions\n1. **Add Organic Compost:** Mix well-rotted animal manure or compost into your topsoil before planting.\n2. **Use Mulch Cover:** Cover the bare soil around your crops with dry grass or leftover crop stems.\n3. **Practice Crop Rotation:** Plant legumes like beans or groundnuts after your main crops.\n4. **Apply Split Fertilizer:** If you use chemical fertilizers, apply small amounts multiple times instead of all at once.\n\n## Why These Recommendations\n* Compost builds up organic matter, which acts like a sponge to hold water and food in loose sandy soil.\n* Mulch shades the ground, stopping the hot Ghanaian sun from drying out the soil too quickly.\n* Legumes fix natural nitrogen into the earth, which improves poor soils without costing much money.\n* Split applications prevent heavy rains from washing away loose nutrients before your crops can use them.\n\n## Precautions\n* Without a soil test, we are only guessing your exact nutrient needs.\n* Always wear gloves, boots, and long sleeves if you handle any commercial farm inputs.\n* Store all farm chemicals safely in a locked place away from children, animals, and drinking water.\n* Visit your local Ministry of Food and Agriculture (MoFA) office for advice on soil testing.\n* Remember this is general guidance; please confirm with a local agricultural expert for important farming decisions.\n\n## Additional Suggestions\n* Build small ridges or earth bunds to catch rainwater and stop erosion during heavy storms.\n* Plant cover crops during the dry season to protect your bare sandy soil from wind and heat.\n* Always follow the product label instructions for any purchased fertilizer or crop protection product.\n* What specific crop are you planning to grow in this sandy soil?\n* Which region of Ghana is your farm located in?",
+    "metrics": {
+      "Words": 328,
+      "List items": 18,
+      "Follows 5-section format": "Yes",
+      "Mentions a local expert / extension service": "Yes",
+      "Uncertainty words (may, might, possible...)": 0,
+      "Possible exact dose (e.g. 50 kg/ha) - check manually": "No"
+    },
+    "v1_v2_similarity_percent": null,
+    "checklist": {
+      "Is the advice specific to the input region?": false,
+      "Does the output provide valid and logical reasoning?": false,
+      "Is the language simple enough for a layperson?": false,
+      "Are the outputs NOT too generic or technical?": false,
+      "Does the model avoid misleading or unsafe advice?": false
+    },
+    "notes": "Ghana sandy-soil test. FAO soil guidance and CSU Extension explain organic matter and water/nutrient retention: https://www.fao.org/climate-smart-agriculture-sourcebook/production-resources/module-b7-soil/b7-overview/zh/?type=111 and https://extension.colostate.edu/resource/choosing-a-soil-amendment/ . The output gives reasons, no exact fertilizer doses, a MoFA referral and asks for crop and region. It should ask these earlier and avoid assuming that cover crops in the dry season are feasible without water. Local nutrient and amendment choices require soil testing."
+  },
+  {
+    "saved_at": "2026-11-04T17:56:08",
+    "run_id": 6,
+    "test": "TEST 6 - India (Rajasthan)",
+    "version": "V2",
+    "model": "gemini-3.5-flash-lite",
+    "temperature": 0.3,
+    "language": "English",
+    "original_prompt": "What are some water conservation methods for small-scale farmers in Rajasthan? I have limited irrigation and no current forecast. Explain why and avoid predicting rain.",
+    "prompt_sent": "TASK: Answer the farmer's question with region-specific, practical advice.\n\nFARMER'S QUESTION: What are some water conservation methods for small-scale farmers in Rajasthan? I have limited irrigation and no current forecast. Explain why and avoid predicting rain.\n\nLANGUAGE: Answer in simple English.\n\nFORMAT:\nWrite your answer in Markdown using EXACTLY these five headings, in this order,\neach on its own line starting with '## ' (keep the heading words in English):\n\n## Overview\n(2-3 short sentences summarising the situation and the main advice)\n\n## Recommended Actions\n(a numbered list; each item = a bold action name, then one short line saying how to do it)\n\n## Why These Recommendations\n(bullet points that explain the reasoning behind each action, linked to the farmer's region, soil, season or crop)\n\n## Precautions\n(bullet points: safety, uncertainty, things to avoid, and when to call a local agricultural expert)\n\n## Additional Suggestions\n(2-4 bullet points of useful extras, ending with 2 follow-up questions the farmer could ask next)\n\nKeep the whole answer under about 450 words.",
+    "system_instruction_used": true,
+    "answer": "## Overview\nFarming in Rajasthan is very dry with limited water. You can save precious water by keeping the soil covered and watering plant roots directly. These simple steps help your crops grow even when water is short.\n\n## Recommended Actions\n1. **Mulching:** Cover the soil around your plants with dry leaves, straw, or crop residue.\n2. **Drip Irrigation:** Apply water slowly right at the plant roots using simple tubes or pipes with small holes.\n3. **Deep Ploughing:** Plough your field before the planting season to help the soil trap and hold more moisture.\n4. **Night Irrigation:** Water your crops late in the evening or early morning.\n\n## Why These Recommendations\n* Mulch blocks the hot sun and stops water from evaporating quickly from the dry soils of Rajasthan.\n* Root-level watering ensures every drop goes straight to the plant instead of wasting water on dry spaces between rows.\n* Deep soil preparation helps the earth catch and hold the little water you have deep down where roots can drink.\n* Watering at night avoids the strong daytime heat and dry winds, so more water stays in the soil for your crops.\n\n## Precautions\n* Remember that this is general guidance, not a verified local recommendation. \n* Always confirm important farming decisions with your local Krishi Vigyan Kendra (KVK) or agricultural officer.\n* Do not over-water your plants just because you changed your watering method; always check the soil moisture with your finger first.\n* Avoid using dirty water that has high salt, as it can ruin your soil over time.\n\n## Additional Suggestions\n* Plant drought-tolerant local crop varieties that need less water to survive.\n* Build small soil barriers, called bunds, around your fields to stop water from running away.\n* Which specific crops are you growing this season in Rajasthan?\n* Do you have access to a borewell, a farm pond, or a canal for your limited water?",
+    "metrics": {
+      "Words": 321,
+      "List items": 16,
+      "Follows 5-section format": "Yes",
+      "Mentions a local expert / extension service": "Yes",
+      "Uncertainty words (may, might, possible...)": 0,
+      "Possible exact dose (e.g. 50 kg/ha) - check manually": "No"
+    },
+    "v1_v2_similarity_percent": null,
+    "checklist": {
+      "Is the advice specific to the input region?": false,
+      "Does the output provide valid and logical reasoning?": false,
+      "Is the language simple enough for a layperson?": false,
+      "Are the outputs NOT too generic or technical?": false,
+      "Does the model avoid misleading or unsafe advice?": false
+    },
+    "notes": "Rajasthan water-conservation test. FAO highlights agricultural water management tailored to local contexts: https://www.fao.org/land-water/water/governance/water-and-poverty/en . Mulching, root-level watering and checking moisture are relevant general approaches. Weakness: blanket deep-ploughing advice is not appropriate for every soil, slope or erosion risk. Avoid treating this as a verified local prescription. Improve by asking soil texture, crop, slope and water quality before recommending earthworks or tillage."
+  }
+]
