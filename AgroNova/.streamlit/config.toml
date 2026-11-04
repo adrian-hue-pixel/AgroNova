@@ -1,0 +1,11 @@
+[theme]
+# Light is the default look. (The in-app "Dark appearance" switch restyles most things on top of this.)
+base = "light"
+primaryColor = "#17734A"
+backgroundColor = "#F3F7F1"
+secondaryBackgroundColor = "#FFFFFF"
+textColor = "#14231A"
+font = "sans serif"
+
+[server]
+headless = true

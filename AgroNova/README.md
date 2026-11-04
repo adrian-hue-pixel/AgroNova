@@ -9,13 +9,40 @@ Built for the Generative AI **Formative Assessment 2 (FA-2)**, following on from
 > | Item | Status |
 > |---|---|
 > | Code written and syntax-checked | ✅ done |
-> | Automated unit tests (helpers, prompts, mocked Gemini logic) | ✅ 24 pass |
-> | Smoke test of every page using a *fake* Streamlit | ✅ passes (does not prove the real UI renders) |
-> | Run with real Streamlit and real Gemini API | ⬜ **you must do this** |
+> | Automated unit tests (helpers, prompts, weather, calendar, store, market, voice, offline pack, mocked Gemini logic) | ✅ 58 pass |
+> | Smoke test of every page using a *fake* Streamlit (7 scenarios, 125+ runs) | ✅ passes (does not prove the real UI renders) |
+> | Light-mode styling previewed in a headless browser (static preview of the CSS components) | ✅ checked |
+> | Run with real Streamlit, real Gemini API, real Open-Meteo | ⬜ **you must do this** |
 > | Six validation prompts run, results recorded | ⬜ **you must do this** |
-> | Deployed on Streamlit Cloud and tested on devices | ⬜ **you must do this** |
+> | Deployed on Streamlit Cloud and tested on phone + laptop | ⬜ **you must do this** |
 >
 > Nothing in this repository claims that deployment, device testing or real API tests have been completed.
+
+## What's new in version 2
+
+| Feature | Where | How it works | Needs |
+|---|---|---|---|
+| **Live local weather** | Live Weather & Alerts, Dashboard | Open-Meteo forecast for the saved location. Simple rules give watering / spraying / harvest / heat / frost hints; "Plan my week" asks Gemini to use **only** the supplied forecast. The last forecast is saved for weak connections. | Internet (no key) |
+| **Plant photo** | Plant Doctor | Photo is shrunk, sent to Gemini with the symptoms. Result = *possible* causes with confidence, never a certain diagnosis. | Gemini key |
+| **Interactive diagnosis** | Plant Doctor | Gemini first returns 3-5 tap-to-answer follow-up questions (validated JSON), then the causes. | Gemini key |
+| **Voice questions and spoken answers** | Ask by Voice, every answer | Microphone recording is transcribed by Gemini and shown for checking. Answers are read aloud by the **browser's own voices** (no data, no API call). | Streamlit ≥ 1.40; voices installed on the device |
+| **Farm profile** | My Farm | Place, soil, pH, water, crops with planting dates. Pre-fills every form and prompt. | none |
+| **Crop calendar** | Crop Calendar | Built-in schedules for 8 common crops (scaled by days-to-harvest) or an AI-tailored schedule; due / overdue lists; `.ics` export so the **phone** sends reminders. | none (AI optional) |
+| **Local market prices** | Market Prices | India: official mandi prices via data.gov.in (free key). Anywhere: prices you type in. Margin comparison uses only your own numbers. | optional `DATA_GOV_IN_API_KEY` |
+| **Offline / low-data mode** | Sidebar toggle, Guides & Offline | Low-data: no web font, no animation, smaller photos, no web-search extras, cached forecast reused. **Offline pack**: one HTML file with saved advice, tasks, forecast and 8 key guides. | none |
+| **Farm journal** | Farm Journal | Planting, treatments, harvest quantities, photos (thumbnails), weather snapshot, CSV export, harvest totals. | none |
+| **Advice sources** | under every answer | Official portals by country and topic (ICAR, KVK, FAO, CABI, Agmarknet, IMD, GMet...). Optional Gemini Google-Search links, clearly labelled. | none |
+| **Dashboard** | My Dashboard | Weather, active crops with growth stage, tasks due, recent advice. | none |
+| **Language, units, detail** | Sidebar | 12 languages; Metric / India (acre, quintal) / Imperial; Short / Standard / Detailed answers; large-text option. | none |
+| **Light-mode redesign** | whole app | New "Meadow" light theme is the default (white cards, high contrast, large touch targets); dark theme kept as a switch. | none |
+
+### Honest limits of the new features
+- **"Offline" has a real boundary.** A Streamlit app runs on a server, so the *app* cannot work with no connection. What works offline is the **offline pack** you download (and your phone calendar reminders). Low-data mode makes the live app lighter.
+- **Photo diagnosis is a guide, not a diagnosis.** Many diseases look alike; the prompt forces uncertainty and a "confirm with an officer" step.
+- **Market prices are never invented.** Without the India key or your own entries, the page says so.
+- **Advice sources** are portal home pages chosen by country/topic; they help you check advice but do not prove each sentence.
+- **Spoken answers** depend on the voices on the farmer's device; if there is no voice for the language the page says so.
+- **Data saving.** The farm file is downloaded/uploaded by the farmer. Automatic saving to `data/farm_data.json` exists only when you set `LOCAL_SAVE = "true"` and is meant for **one device** (on a shared public server it would mix farmers' data, so it is off by default).
 
 ## 1. Introduction
 AgroNova lets a farmer type their country, region, crop, soil and season and receive clear, formatted advice with reasons and
@@ -78,12 +105,22 @@ AgroNova/
 ├── .gitignore
 ├── tests/                      # automated tests (see Testing)
 ├── .streamlit/
-│   ├── config.toml             # green theme
+│   ├── config.toml             # light theme (default)
 │   └── secrets.toml.example    # template - the real secrets.toml is git-ignored
+├── views/                      # one module per page (dashboard, farm, forecast, doctor, ask, calendar, market, journal, guides...)
 ├── utils/
-│   ├── gemini.py               # reusable API call + error handling
-│   ├── prompts.py              # system instruction, task prompts, output format
-│   └── helpers.py              # input validation + response parsing
+│   ├── gemini.py               # API calls: text, photos, audio, JSON, optional Google-Search sources
+│   ├── prompts.py              # system instruction, task prompts, detail levels, doctor/calendar prompts
+│   ├── helpers.py              # input validation + response parsing
+│   ├── weather.py              # Open-Meteo forecast + transparent farm rules
+│   ├── farmcal.py              # crop templates, stages, tasks, .ics reminders
+│   ├── store.py                # farm profile / journal / advice data, photo shrinking, farm file
+│   ├── market.py               # mandi prices (India) + margin comparison on farmer's numbers
+│   ├── sources.py              # trusted portals by country and topic
+│   ├── voice.py                # spoken answers (browser speech) + text clean-up
+│   ├── offline.py, guides.py   # offline pack and bundled guides
+│   ├── units.py                # metric / India / imperial display and prompt rules
+│   └── ui.py                   # light + dark themes, components, Novi the mascot
 └── data/README.md
 ```
 
@@ -143,6 +180,15 @@ pip install -r requirements.txt
 
 Run: `streamlit run app.py`
 
+### Optional settings (secrets or environment variables)
+```toml
+GEMINI_API_KEY = "..."            # required for AI features
+GEMINI_MODEL = "gemini-2.5-flash" # optional: change the model without editing code
+DATA_GOV_IN_API_KEY = "..."       # optional: free key from data.gov.in for official Indian mandi prices
+LOCAL_SAVE = "true"               # optional: auto-save the farm to data/farm_data.json (single-device use only)
+```
+Weather needs no key (Open-Meteo, CC BY 4.0 - the attribution is shown in the app).
+
 ## 16. Deployment (Streamlit Community Cloud)
 1. Create a **public** GitHub repository (e.g. `AgroNova`), upload all files (do **not** upload `secrets.toml`).
 2. Go to https://share.streamlit.io, sign in with GitHub, click **Create app**.
@@ -154,8 +200,8 @@ Run: `streamlit run app.py`
 ## 17. Testing methodology
 **Automated (already run by the developer, see status table):**
 ```bash
-python -m unittest discover -s tests -v                 # 24 tests: helpers, prompts, mocked Gemini logic
-python tests/smoke_app_with_stub_streamlit.py            # runs every page against a FAKE Streamlit
+python -m unittest discover -s tests -v                 # 58 tests: helpers, prompts, weather, calendar, store, market, voice, offline pack, mocked Gemini
+python tests/smoke_app_with_stub_streamlit.py            # runs every page in 7 scenarios against a FAKE Streamlit
 ```
 These tests use fakes: they check our logic, **not** the real Streamlit UI or the real Gemini API.
 
@@ -163,18 +209,21 @@ These tests use fakes: they check our logic, **not** the real Streamlit UI or th
 1. Run locally (`streamlit run app.py`) and test every page: empty forms, pH = 20, a missing key and a wrong API key (expect friendly errors), each language, feedback submit and CSV download.
 2. Run the six Validation Lab prompts (V1 vs V2) and complete the checklist.
 3. Test the live URL on at least two devices/browsers (phone + laptop) and keep screenshots.
+4. **New features checklist:** search a place and see the forecast; upload a leaf photo and answer the questions; record a spoken question and press *Listen*; add a crop and download the `.ics` file into your phone calendar; add a journal entry with a photo; download the farm file, refresh, and load it back from the sidebar; switch units, language and *Low-data mode*; download the offline pack and open it with the internet off; try *Large text* and the light/dark switch on a phone.
 
 **Known behaviour:** form fields reset when you leave a page and come back (Streamlit design); generated advice and feedback stay for the session.
 
 ## 18. Limitations
 - General guidance only; not verified for every district or variety.
-- No live weather, soil-test or market data.
-- Pests/diseases cannot be confirmed from text; no image diagnosis.
-- AI can still make mistakes or translate imperfectly, especially in less-resourced languages.
-- Feedback storage on Streamlit Cloud is temporary; free API quota is limited.
+- Forecast hints come from simple rules on Open-Meteo data; Open-Meteo is a model forecast, not a local station.
+- Photo and question-based results are possibilities, not confirmed diagnoses.
+- No worldwide market-price source: official prices are India-only (free key); elsewhere farmers type prices.
+- The app itself needs internet; offline use is through the downloadable pack and phone calendar reminders.
+- AI can still make mistakes or translate imperfectly, especially in less-resourced languages; spoken answers depend on device voices.
+- Feedback and farm data on Streamlit Cloud are temporary unless the farmer downloads the farm file; free API quota is limited.
 
 ## 19. Future improvements
-Real weather API, photo-based pest identification, voice input for low-literacy users, a database for feedback, region-specific data from FAO/KVK, offline/SMS access.
+A real database with farmer sign-in, SMS / WhatsApp access, crop calendars curated per district with KVK / TNAU, local-language voice with server-side speech, pest image models validated by experts, price alerts, and installable PWA offline support.
 
 ## 20. Conclusion
 AgroNova shows how prompt engineering, structured output and clear safety rules can turn a general LLM into a usable, responsible farming assistant.

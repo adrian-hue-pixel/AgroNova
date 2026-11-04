@@ -1,0 +1,16 @@
+# Secrets - NEVER commit these
+.streamlit/secrets.toml
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Local feedback log (created while the app runs)
+data/feedback.csv
+.DS_Store
+
+# Saved farm data (only exists when LOCAL_SAVE is turned on)
+data/farm_data.json
