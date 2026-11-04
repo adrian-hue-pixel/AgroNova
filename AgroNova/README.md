@@ -78,7 +78,7 @@ Extras: multilingual answers (12 languages), input validation, loading spinner, 
 Python 3 · Streamlit · Google Gemini via the `google-genai` SDK · Pandas (feedback table only) · GitHub · Streamlit Community Cloud.
 
 **Honest note on the model:** the brief mentions Gemini 1.5 and the `google-generativeai` library. Both are retired/deprecated, so this project uses the
-supported `google-genai` SDK (version 1.51.0 or newer, which Gemini 3 models need) and the default model **`gemini-3.8-flash`**
+supported `google-genai` SDK (version 1.51.0 or newer, which Gemini 3 models need) and the default model **`gemini-3.5-flash-lite`**
 (`DEFAULT_MODEL` in `utils/gemini.py`; Google's model list showed it as a stable model when this was written - re-check at https://ai.google.dev/gemini-api/docs/models).
 You can change the model without editing code by adding `GEMINI_MODEL = "..."` to your secrets. Write the model you really used in your report.
 
@@ -183,7 +183,7 @@ Run: `streamlit run app.py`
 ### Optional settings (secrets or environment variables)
 ```toml
 GEMINI_API_KEY = "..."            # required for AI features
-GEMINI_MODEL = "gemini-2.5-flash" # optional: change the model without editing code
+GEMINI_MODEL = "gemini-3.5-flash-lite" # optional: change the model without editing code
 DATA_GOV_IN_API_KEY = "..."       # optional: free key from data.gov.in for official Indian mandi prices
 LOCAL_SAVE = "true"               # optional: auto-save the farm to data/farm_data.json (single-device use only)
 ```

@@ -34,7 +34,7 @@ Screenshots: [INSERT screenshot of each feature page]
 
 ## D. Gemini API integration and configuration
 - SDK: `google-genai` version 1.51.0 or newer (the `google-generativeai` package named in the brief is deprecated, and Gemini 3 features need ≥1.51.0).
-- Model: default `gemini-3.8-flash`, replacing Gemini 1.5 which is no longer available. The model can be changed with the `GEMINI_MODEL` secret. **[YOU: write the exact model you used when you ran your tests, and the date.]**
+- Model: default `gemini-3.5-flash-lite`, replacing Gemini 1.5 which is no longer available. The model can be changed with the `GEMINI_MODEL` secret. Successfully tested in the local Validation Lab on 2026-11-04.
 - API key: stored in Streamlit secrets (`GEMINI_API_KEY`), never in the code or GitHub (`secrets.toml` is in `.gitignore`); the sidebar shows whether a key is found.
 - One reusable function, `generate_advice()` in `utils/gemini.py`, sends a single `GenerateContentConfig` containing the **system instruction**, **temperature 0.3** (factual, consistent) and **max_output_tokens 8192** (on Gemini 3 this limit includes hidden thinking tokens, so it is set well above the ~450-word answers).
 - Thinking setting: `thinking_level=LOW` for Gemini 3 models, `thinking_budget=0` for Gemini 2.5 Flash; never both.
