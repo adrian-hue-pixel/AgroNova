@@ -1,8 +1,30 @@
 <p align="center"><img src="../assets/banner.svg" alt="AgroNova Smart Farming Assistant" width="100%"></p>
 
-# AgroNova Smart Farming Assistant
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&amp;logo=python&amp;logoColor=white" alt="Python 3.10+">
+  <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&amp;logo=streamlit&amp;logoColor=white" alt="Streamlit">
+  <img src="https://img.shields.io/badge/Google_Gemini-8E75B2?style=for-the-badge&amp;logo=googlegemini&amp;logoColor=white" alt="Google Gemini">
+  <img src="https://img.shields.io/badge/pandas-150458?style=for-the-badge&amp;logo=pandas&amp;logoColor=white" alt="pandas">
+  <img src="https://img.shields.io/badge/Tests-60_passing-2EA043?style=for-the-badge" alt="60 tests passing">
+</p>
 
-[Open the live app](https://agronova-intelligence.streamlit.app) · [Application source](./) · [Validation evidence](../docs/validation/validation_log.json)
+<h3 align="center">
+  <a href="https://agronova-intelligence.streamlit.app/">🌐 Live Demo</a>
+  &nbsp; • &nbsp;
+  <a href="#run-locally">🚀 Get Started</a>
+  &nbsp; • &nbsp;
+  <a href="#features">✨ Features</a>
+  &nbsp; • &nbsp;
+  <a href="#validation-evidence">🧪 Validation</a>
+</h3>
+
+<p align="center">
+  <b>Ask in your language · Plan your crops · Check the weather · Grow with Novi 🌱</b>
+</p>
+
+---
+
+## About AgroNova
 
 AgroNova is a Python and Streamlit farming assistant powered by Google Gemini. Farmers can enter their country, crop, soil and water situation and receive advice with explanations and precautions in one of 12 languages.
 
