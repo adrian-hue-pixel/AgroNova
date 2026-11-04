@@ -8,7 +8,11 @@ import streamlit.components.v1 as components
 from utils import helpers, prompts, sources, store, ui, units, voice, weather
 from utils.gemini import GeminiError, generate_advice, generate_with_sources, has_api_key, secret
 
-COUNTRIES = ["India", "Ghana", "Canada", "Kenya", "Brazil", "Italy", "Other"]
+EU_COUNTRIES = ["Austria", "Belgium", "Bulgaria", "Croatia", "Cyprus", "Czechia", "Denmark", "Estonia",
+                "Finland", "France", "Germany", "Greece", "Hungary", "Ireland", "Italy", "Latvia", "Lithuania",
+                "Luxembourg", "Malta", "Netherlands", "Poland", "Portugal", "Romania", "Slovakia", "Slovenia",
+                "Spain", "Sweden"]
+COUNTRIES = ["India", "Ghana", "Canada", "Kenya", "Brazil", *EU_COUNTRIES, "Other"]
 LANGUAGES = ["English", "Hindi", "Tamil", "Telugu", "Kannada", "Malayalam", "Marathi", "Bengali",
              "French", "Spanish", "Portuguese", "Twi (Ghana)"]
 MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September",

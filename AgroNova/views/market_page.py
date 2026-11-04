@@ -16,6 +16,9 @@ def _delete_price(price_id: str) -> None:
 
 def _live_prices() -> None:
     p = sh.profile()
+    if p["country"] in market.EU_MEMBER_STATES:
+        _eu_prices(p)
+        return
     key = str(secret("DATA_GOV_IN_API_KEY", "") or "").strip()
     if p["country"] != "India":
         st.info("Official live prices are available for India only. For other countries, type the prices you see in your "
@@ -48,6 +51,33 @@ def _live_prices() -> None:
             with st.expander("See each market"):
                 st.dataframe(pd.DataFrame(rows)[["market", "district", "commodity", "variety", "date", "min", "max", "modal"]],
                              hide_index=True)
+
+
+def _eu_prices(profile: dict) -> None:
+    st.caption("Official weekly cereal market prices reported to the European Commission. Prices are shown in the source currency and unit; availability and latest week vary by country and cereal.")
+    with st.form("eu_cereal_prices_form"):
+        country = st.selectbox("EU member country", list(market.EU_MEMBER_STATES),
+                               index=list(market.EU_MEMBER_STATES).index(profile["country"]))
+        days = st.selectbox("Recent period", [90, 180, 365], format_func=lambda d: {90: "Last 3 months", 180: "Last 6 months", 365: "Last year"}[d])
+        fetch = st.form_submit_button("Show official prices", type="primary")
+    if fetch:
+        try:
+            with st.spinner("Fetching official prices..."):
+                st.session_state["eu_cereal_prices"] = market.fetch_eu_cereal_prices(country, days)
+                st.session_state["eu_cereal_country"] = country
+        except market.MarketError as e:
+            st.error(str(e))
+    rows = st.session_state.get("eu_cereal_prices")
+    if rows is not None and st.session_state.get("eu_cereal_country") == country:
+        if not rows:
+            st.info("The European Commission has no cereal prices for this country and period. Try a longer period or another EU country.")
+        else:
+            shown = [{"Country": r["country"], "Cereal": r["commodity"], "Market": r["market"], "Stage": r["stage"],
+                      "Period": " – ".join(x for x in (r["date"], r["end_date"]) if x),
+                      "Price": r["price"], "Unit": r["unit"]} for r in rows]
+            st.dataframe(pd.DataFrame(shown), hide_index=True, use_container_width=True)
+            st.caption("Source: European Commission Agri-food Data Portal. These are reported market reference prices, not a guaranteed local farmgate offer.")
+            st.link_button("Open the official EU market data", "https://agridata.ec.europa.eu/extensions/dataportal/agricultural_markets.html")
 
 
 def _my_prices() -> None:

@@ -55,6 +55,12 @@ def links_for(country: str, region: str = "", feature: str = "general") -> list:
     topic = TOPIC_OF_FEATURE.get(feature, feature if feature in GLOBAL else "general")
     entries = []
     country_links = BY_COUNTRY.get(country, {})
+    if country in {"Austria", "Belgium", "Bulgaria", "Croatia", "Cyprus", "Czechia", "Denmark", "Estonia",
+                   "Finland", "France", "Germany", "Greece", "Hungary", "Ireland", "Italy", "Latvia", "Lithuania",
+                   "Luxembourg", "Malta", "Netherlands", "Poland", "Portugal", "Romania", "Slovakia", "Slovenia",
+                   "Spain", "Sweden"}:
+        entries += [("European Commission Agri-food Markets", "https://agridata.ec.europa.eu/extensions/dataportal/agricultural_markets.html",
+                     "Official weekly cereal prices and other EU agricultural market data")]
     for t in (topic, "general"):
         entries += country_links.get(t, [])
     for key, extra in BY_REGION.items():

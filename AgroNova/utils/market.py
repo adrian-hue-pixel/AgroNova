@@ -1,17 +1,24 @@
-"""Local market prices and "what might be worth growing".
+"""Official market prices and farmer-entered prices.
 
-Honest scope: there is no free, worldwide mandi-price API. So AgroNova supports two sources:
-1. India: the Government of India "Current Daily Price of Various Commodities from Various Markets (Mandi)"
-   open dataset on data.gov.in (needs a FREE API key: set DATA_GOV_IN_API_KEY in the secrets). Prices are Rs per quintal.
-2. Anywhere: prices the farmer (or a co-operative / extension officer) types in from the local market.
-AgroNova never invents a price. The margin comparison only uses numbers the farmer enters.
+India uses data.gov.in (free API key). EU countries use European Commission weekly
+cereal prices (no key). Everywhere else can use farmer-entered local prices.
 """
+import datetime
 import json
 import urllib.error
 import urllib.parse
 import urllib.request
 
 AGMARKNET_URL = "https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070"
+EU_CEREAL_URL = "https://api.tech.ec.europa.eu/agrifood/api/cereal/prices"
+EU_MEMBER_STATES = {
+    "Austria": "AT", "Belgium": "BE", "Bulgaria": "BG", "Croatia": "HR", "Cyprus": "CY",
+    "Czechia": "CZ", "Denmark": "DK", "Estonia": "EE", "Finland": "FI", "France": "FR",
+    "Germany": "DE", "Greece": "EL", "Hungary": "HU", "Ireland": "IE", "Italy": "IT",
+    "Latvia": "LV", "Lithuania": "LT", "Luxembourg": "LU", "Malta": "MT", "Netherlands": "NL",
+    "Poland": "PL", "Portugal": "PT", "Romania": "RO", "Slovakia": "SK", "Slovenia": "SI",
+    "Spain": "ES", "Sweden": "SE",
+}
 PRICE_UNITS = ("per kg", "per quintal (100 kg)", "per tonne", "per lb")
 
 
@@ -62,6 +69,52 @@ def fetch_agmarknet(api_key: str, state: str = "", commodity: str = "", district
     except (urllib.error.URLError, TimeoutError, OSError, ValueError) as e:
         raise MarketError("Could not reach the market price service. Please try again later or type prices yourself.") from e
     return parse_agmarknet(raw)
+
+
+def parse_eu_cereal_prices(raw) -> list:
+    """European Commission cereal API -> normalized weekly price rows in source units."""
+    if isinstance(raw, dict):
+        raw = raw.get("data") or raw.get("records") or []
+    if not isinstance(raw, list):
+        return []
+    out = []
+    for r in raw:
+        if not isinstance(r, dict):
+            continue
+        raw_price = str(r.get("price") or "").strip()
+        # The Commission returns prices such as "€274,79" (decimal comma).
+        price = _f(raw_price.replace("€", "").replace(" ", "").replace(",", "."))
+        if price is None:
+            continue
+        out.append({"country": str(r.get("memberStateName") or ""),
+                    "commodity": str(r.get("productName") or "Cereal"),
+                    "market": str(r.get("marketName") or ""), "stage": str(r.get("stageName") or ""),
+                    "date": str(r.get("beginDate") or r.get("referencePeriod") or ""),
+                    "end_date": str(r.get("endDate") or ""), "price": price,
+                    "unit": str(r.get("unit") or ""), "source": "European Commission Agri-food Data Portal"})
+    return out
+
+
+def fetch_eu_cereal_prices(country: str, days: int = 90) -> list:
+    """Fetch recent weekly cereal market prices for an EU member state; no key required."""
+    code = EU_MEMBER_STATES.get(country)
+    if not code:
+        raise MarketError("Choose an EU member country to see these official cereal prices.")
+    today = datetime.date.today()
+    start = today - datetime.timedelta(days=max(30, min(int(days), 366)))
+    params = {"memberStateCodes": code, "beginDate": start.strftime("%d/%m/%Y"),
+              "endDate": today.strftime("%d/%m/%Y")}
+    url = f"{EU_CEREAL_URL}?{urllib.parse.urlencode(params)}"
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": "AgroNova/2.0 (student project)", "Accept": "application/json"})
+        with urllib.request.urlopen(req, timeout=15) as resp:  # noqa: S310 - fixed https URL
+            raw = json.loads(resp.read().decode("utf-8"))
+    except (urllib.error.URLError, TimeoutError, OSError, ValueError) as e:
+        raise MarketError("Could not reach the European Commission price service. Please try again later.") from e
+    rows = parse_eu_cereal_prices(raw)
+    if not rows and isinstance(raw, dict) and raw.get("message"):
+        return []
+    return rows
 
 
 def summarize(records: list) -> list:
