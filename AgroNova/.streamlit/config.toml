@@ -1,10 +1,10 @@
 [theme]
-# Light is the default look. (The in-app "Dark appearance" switch restyles most things on top of this.)
-base = "light"
-primaryColor = "#17734A"
-backgroundColor = "#F3F7F1"
-secondaryBackgroundColor = "#FFFFFF"
-textColor = "#14231A"
+# Start new visits in dark mode. The in-app switch also provides a light theme.
+base = "dark"
+primaryColor = "#7BD3A0"
+backgroundColor = "#0B0C0E"
+secondaryBackgroundColor = "#17181B"
+textColor = "#F5F5F7"
 font = "sans serif"
 
 [server]

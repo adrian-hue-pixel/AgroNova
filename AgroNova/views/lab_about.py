@@ -6,6 +6,8 @@ import pandas as pd
 import streamlit as st
 
 from utils import ui
+from utils.language_checks import run_checks
+from views.shared import LANGUAGES
 from utils.gemini import DEFAULT_TEMPERATURE, GeminiError, active_model, generate_advice, has_api_key
 from utils.helpers import compare_outputs, output_metrics, safe_csv_cell, validation_log_markdown
 from utils.prompts import SYSTEM_INSTRUCTION, build_free_prompt
@@ -28,7 +30,7 @@ CHECKLIST = [
 
 
 
-def run_lab_test(question: str, temperature: float, mode: str, language: str) -> dict:
+def run_lab_test(question: str, temperature: float, mode: str, language: str, max_tokens: int = 8192) -> dict:
     """Make the real Gemini call(s) for one Validation Lab run. Nothing is simulated."""
     versions = ["V1", "V2"] if mode.startswith("Compare") else ["V1"] if mode.startswith("V1") else ["V2"]
     results = []
@@ -37,14 +39,14 @@ def run_lab_test(question: str, temperature: float, mode: str, language: str) ->
         prompt = build_free_prompt(question, language, engineered)
         with st.spinner(f"Calling Gemini for {v}..."):
             try:
-                answer = generate_advice(prompt, temperature=temperature,
+                answer = generate_advice(prompt, temperature=temperature, max_tokens=max_tokens,
                                          system_instruction=SYSTEM_INSTRUCTION if engineered else None)
                 results.append({"version": v, "prompt_sent": prompt, "system_used": engineered, "answer": answer, "error": None})
             except GeminiError as e:
                 results.append({"version": v, "prompt_sent": prompt, "system_used": engineered, "answer": None, "error": str(e)})
     st.session_state["lab_run_id"] += 1
     return {"run_id": st.session_state["lab_run_id"], "question": question, "temperature": temperature,
-            "model": active_model(), "language": language, "results": results,
+            "model": active_model(), "language": language, "max_output_tokens": max_tokens, "results": results,
             "time": datetime.datetime.now().isoformat(timespec="seconds")}
 
 
@@ -61,6 +63,7 @@ def page_lab():
     c1, c2 = st.columns(2)
     mode = c1.radio("What to run", ["Compare V1 and V2 side by side (2 API calls)", "V1 only - basic prompt", "V2 only - engineered prompt"])
     temp = c2.slider("Temperature", 0.0, 1.0, DEFAULT_TEMPERATURE, 0.1, help="Lower = more consistent and factual. Higher = more varied.")
+    max_tokens = c2.number_input("Output token limit", min_value=128, max_value=32768, value=8192, step=128)
     language = st.session_state.get("language", "English")
     c2.caption(f"Answer language: {language} (change it in the sidebar)")
 
@@ -70,7 +73,29 @@ def page_lab():
         elif len(question) > 1000:
             st.error("The prompt is too long (maximum 1000 characters).")
         else:
-            st.session_state["lab_current"] = dict(run_lab_test(question.strip(), temp, mode, language), test=name)
+            st.session_state["lab_current"] = dict(run_lab_test(question.strip(), temp, mode, language, int(max_tokens)), test=name)
+
+    with st.expander("Language and parameter checks"):
+        st.caption("These checks make real API calls. Results record errors as well as answers. They do not certify translation accuracy.")
+        fixed_question = "I grow tomatoes in Tamil Nadu, India, with limited irrigation. Give three ways to conserve water. Use simple words."
+        if st.button("Compare temperature and token limits (3 API calls)"):
+            settings = [{"label": "Baseline", "language": "English", "temperature": 0.3, "max_output_tokens": 8192},
+                        {"label": "Higher temperature", "language": "English", "temperature": 0.9, "max_output_tokens": 8192},
+                        {"label": "Lower token limit", "language": "English", "temperature": 0.3, "max_output_tokens": 256}]
+            with st.spinner("Comparing three settings with the same prompt..."):
+                st.session_state["parameter_checks"] = run_checks(fixed_question, settings)
+        if st.button("Check all 12 answer languages (12 API calls)"):
+            with st.spinner("Checking each answer language..."):
+                st.session_state["language_checks"] = run_checks(fixed_question, [
+                    {"label": lang, "language": lang, "temperature": 0.3, "max_output_tokens": 8192} for lang in LANGUAGES])
+        for key, title in (("parameter_checks", "Parameter checks"), ("language_checks", "Language checks")):
+            if key in st.session_state:
+                results = st.session_state[key]
+                st.write(f"{title}: {sum(bool(r.get('answer')) for r in results)} of {len(results)} calls returned text.")
+                st.download_button(f"Download {title.lower()} JSON", json.dumps(results, indent=2, ensure_ascii=False), file_name=key + ".json")
+                chosen = st.selectbox(f"View {title.lower()}", [r["label"] for r in results], key=f"{key}_view")
+                result = next(r for r in results if r["label"] == chosen)
+                st.write(result.get("answer") or result.get("error"))
 
     cur = st.session_state.get("lab_current")
     if cur:
@@ -142,7 +167,7 @@ def render_lab_run(cur: dict):
                 st.session_state["validation_log"].append({
                     "saved_at": datetime.datetime.now().isoformat(timespec="seconds"), "run_id": cur["run_id"],
                     "test": cur["test"], "version": r["version"], "model": cur["model"], "temperature": cur["temperature"],
-                    "language": cur["language"], "original_prompt": cur["question"], "prompt_sent": r["prompt_sent"],
+                    "language": cur["language"], "max_output_tokens": cur.get("max_output_tokens", 8192), "original_prompt": cur["question"], "prompt_sent": r["prompt_sent"],
                     "system_instruction_used": r["system_used"], "answer": r["answer"], "metrics": output_metrics(r["answer"]),
                     "v1_v2_similarity_percent": similarity, "checklist": ticks[r["version"]], "notes": notes})
             st.success(f"Saved {len(ok)} entr{'y' if len(ok) == 1 else 'ies'}. The log now has {len(st.session_state['validation_log'])}.")

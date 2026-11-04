@@ -216,6 +216,13 @@ class MarketTests(unittest.TestCase):
 
 
 class SourcesVoiceOfflineTests(unittest.TestCase):
+    def test_tamil_question_uses_tamil_reply_and_speech_voice(self):
+        self.assertEqual(voice.question_language("தக்காளி இலைகள் மஞ்சளாக உள்ளன", "English"), "Tamil")
+        self.assertEqual(voice.question_language("என் tomato leaves மஞ்சள்", "English"), "Tamil")
+        self.assertEqual(voice.question_language("How can I save water?", "French"), "French")
+        self.assertEqual(voice.question_language("मेरी फसल", "Marathi"), "Marathi")
+        self.assertIn('LANG="ta-IN"', voice.speak_html("தமிழ் பதில்", "Tamil"))
+
     def test_sources_are_https_unique_and_local_first(self):
         links = sources.links_for("India", "Tamil Nadu", "doctor")
         self.assertTrue(all(l["url"].startswith("https://") for l in links))

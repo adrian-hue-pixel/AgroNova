@@ -20,6 +20,19 @@ def lang_code(language: str) -> str:
     return LANG_CODES.get(language, "en-IN")
 
 
+def question_language(text: str, selected: str = "English") -> str:
+    """Match supported Indian scripts; Latin and ambiguous scripts use the chosen language."""
+    ranges = [("Tamil", 0x0B80, 0x0BFF), ("Telugu", 0x0C00, 0x0C7F),
+              ("Kannada", 0x0C80, 0x0CFF), ("Malayalam", 0x0D00, 0x0D7F),
+              ("Bengali", 0x0980, 0x09FF)]
+    for name, lo, hi in ranges:
+        if any(lo <= ord(char) <= hi for char in text):
+            return name
+    if any(0x0900 <= ord(char) <= 0x097F for char in text):
+        return "Marathi" if selected == "Marathi" else "Hindi"
+    return selected
+
+
 def strip_markdown(text: str) -> str:
     """Turn the model's Markdown into plain sentences that sound natural when read aloud."""
     text = re.sub(r"(?m)^\s*#{1,6}\s*(.+?)\s*$", r"\1.", text)          # headings become sentences

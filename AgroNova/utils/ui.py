@@ -109,8 +109,11 @@ footer{visibility:hidden;}
 .b1{background:radial-gradient(circle,var(--blob1),transparent 65%);top:-26vmax;right:-18vmax;}
 .b2{background:radial-gradient(circle,var(--blob2),transparent 65%);bottom:-26vmax;left:-18vmax;animation-duration:52s;}
 @keyframes drift{to{transform:translate(-6vmax,5vmax) scale(1.1)}}
-.leafpat{position:absolute;inset:0;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpath d='M20 80C20 50 40 30 70 28 70 58 50 78 20 80z' fill='%2317734A'/%3E%3Cpath d='M82 112C82 96 92 86 108 85 108 101 98 111 82 112z' fill='%2317734A'/%3E%3C/svg%3E");}
+.leafpat{position:absolute;inset:-120px;opacity:.05;animation:leaf-drift 42s linear infinite;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpath d='M20 80C20 50 40 30 70 28 70 58 50 78 20 80z' fill='%2317734A'/%3E%3Cpath d='M82 112C82 96 92 86 108 85 108 101 98 111 82 112z' fill='%2317734A'/%3E%3C/svg%3E");}
 .tw{position:absolute;border-radius:50%;background:var(--star);opacity:0;animation:twinkle var(--d) ease-in-out infinite;animation-delay:var(--dl);}
+@keyframes leaf-drift{to{transform:translate(120px,-120px)}}
+.pollen{position:absolute;width:5px;height:5px;border-radius:50%;background:#C39B38;opacity:0;animation:pollen-rise var(--d) ease-in-out infinite;animation-delay:var(--dl);}
+@keyframes pollen-rise{0%{opacity:0;transform:translate(0,30px)}25%,70%{opacity:.32}100%{opacity:0;transform:translate(45px,-120px)}}
 @keyframes twinkle{0%,100%{opacity:0}50%{opacity:var(--twop)}}
 .shoot{position:absolute;top:var(--t);left:var(--l);width:120px;height:1px;background:linear-gradient(90deg,transparent,var(--star2),var(--star));opacity:0;transform:rotate(145deg);animation:shoot var(--d) linear infinite;animation-delay:var(--dl);}
 @keyframes shoot{0%{opacity:0;transform:rotate(145deg) translateX(0)}2%{opacity:.8}10%{opacity:0;transform:rotate(145deg) translateX(520px)}100%{opacity:0;transform:rotate(145deg) translateX(520px)}}
@@ -323,7 +326,7 @@ def global_css(dark: bool = False, large_text: bool = False, low_data: bool = Fa
 
 
 def background_fx(dark: bool = False, seed: int = 7, low_data: bool = False) -> str:
-    """Light: soft sun-glow and a faint leaf pattern. Dark: aurora, twinkling stars, rare shooting stars. (CSS only.)"""
+    """Light: drifting sun-glow, moving leaves and floating pollen. Dark: aurora, twinkling stars, rare shooting stars. (CSS only.)"""
     if low_data:
         return ""
     rnd = random.Random(seed)
@@ -338,6 +341,8 @@ def background_fx(dark: bool = False, seed: int = 7, low_data: bool = False) -> 
                          f'--d:{rnd.randint(14, 22)}s;--dl:{i * 4.5:.1f}s"></i>')
     else:
         parts.append('<div class="leafpat"></div>')
+        for _ in range(16):
+            parts.append(f'<i class="pollen" style="left:{rnd.randint(1, 98)}%;top:{rnd.randint(8, 100)}%;--d:{rnd.randint(14, 28)}s;--dl:-{rnd.randint(0, 28)}s"></i>')
     parts.append("</div>")
     return _min("".join(parts))
 

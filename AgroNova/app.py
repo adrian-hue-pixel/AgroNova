@@ -26,7 +26,7 @@ from views.market_page import page_market  # noqa: E402
 sh.ensure_state()
 pr = sh.prefs()
 
-# ---------------------------------------------------------------- styling (light is the default)
+# ---------------------------------------------------------------- styling (dark is the default)
 st.markdown(ui.global_css(pr["dark"], pr["large_text"], pr["low_data"]) + ui.background_fx(pr["dark"], low_data=pr["low_data"]),
             unsafe_allow_html=True)
 

@@ -35,7 +35,7 @@ def prefs() -> dict:
     s = st.session_state
     return {"language": s.get("language", "English"), "units": s.get("units", units.DEFAULT_UNITS),
             "detail": s.get("detail", prompts.DEFAULT_DETAIL), "large_text": bool(s.get("large_text", False)),
-            "low_data": bool(s.get("low_data", False)), "dark": bool(s.get("dark_mode", False))}
+            "low_data": bool(s.get("low_data", False)), "dark": bool(s.get("dark_mode", True))}
 
 
 def apply_prefs(saved: dict) -> None:
@@ -58,11 +58,13 @@ def local_save_enabled() -> bool:
 
 def ensure_state() -> None:
     s = st.session_state
+    fresh_visit = "dark_mode" not in s
     if "farm" not in s:
         loaded = store.load_local() if local_save_enabled() else None
         s["farm"] = loaded or store.new_farm()
         apply_prefs(s["farm"].get("prefs", {}))
-    s.setdefault("dark_mode", False)
+    if fresh_visit:
+        s["dark_mode"] = True
     s.setdefault("page", "home")
     s.setdefault("results", {})
     s.setdefault("feedback", [])
@@ -196,15 +198,15 @@ def run_ai(prompt: str, *, images=None, grounded: bool = False, messages=None) -
     return text, links
 
 
-def build_prompt(feature: str, context: dict, extra: str = "") -> str:
+def build_prompt(feature: str, context: dict, extra: str = "", language: str = None) -> str:
     pr = prefs()
-    return prompts.build_prompt_v2(feature, context, pr["language"], pr["detail"], units.prompt_rule(pr["units"]), extra)
+    return prompts.build_prompt_v2(feature, context, language or pr["language"], pr["detail"], units.prompt_rule(pr["units"]), extra)
 
 
 def save_result(feature: str, title: str, text: str, links: list = None, **extra) -> None:
     st.session_state["results"][feature] = dict({"text": text, "time": datetime.datetime.now().isoformat(),
-                                                 "links": links or []}, **extra)
-    store.add_advice(farm(), feature, title, text, prefs()["language"], links)
+                                                 "links": links or [], "language": prefs()["language"]}, **extra)
+    store.add_advice(farm(), feature, title, text, extra.get("language", prefs()["language"]), links)
     st.session_state["question_count"] += 1
 
 
@@ -227,12 +229,13 @@ def render_result(text: str) -> None:
     st.success("Remember: this is general guidance. Please confirm important decisions with your local agricultural officer.")
 
 
-def advice_tools(feature: str, text: str, token: str, extra_links: list = None, country: str = "") -> None:
+def advice_tools(feature: str, text: str, token: str, extra_links: list = None, country: str = "", language: str = None) -> None:
     """Listen / download / sources, shown under every piece of advice."""
     pr = prefs()
+    language = language or st.session_state.get("results", {}).get(feature, {}).get("language", pr["language"])
     c1, c2 = st.columns([2, 1])
     with c1:
-        components.html(voice.speak_html(text, pr["language"], dark=pr["dark"]), height=96)
+        components.html(voice.speak_html(text, language or pr["language"], dark=pr["dark"]), height=96)
     with c2:
         st.download_button("Download this advice", text, file_name=f"agronova_{feature}.md", key=f"dl_{feature}_{token}")
     with st.expander("Advice sources: where to check this"):

@@ -171,7 +171,7 @@ def generate_with_sources(prompt: str, *, system_instruction: str = SYSTEM_INSTR
 
 def transcribe_audio(audio_bytes: bytes, mime: str = "audio/wav", language: str = "English") -> str:
     """Speech to text with Gemini. Returns only what the speaker said."""
-    prompt = (f"Transcribe this short voice recording of a farmer exactly as spoken. The speaker may use {language}, "
+    prompt = (f"Transcribe this short voice recording of a farmer exactly as spoken. The speaker may use any language, including Tamil, {language}, "
               f"English or a mix. Write the words in their original language and script. Return ONLY the transcript, "
               f"with no comments. If you hear no speech, return the single word NOSPEECH.")
     text, _ = _run(prompt, system_instruction=None, temperature=0.0, max_tokens=1024, audio=(audio_bytes, mime))

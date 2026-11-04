@@ -91,6 +91,20 @@ class GeminiLogicTests(unittest.TestCase):
         sys.modules.pop("utils.gemini", None)
         self.g = importlib.import_module("utils.gemini")
 
+    def test_parameter_checks_keep_prompt_fixed_and_forward_settings(self):
+        from unittest.mock import patch
+        import utils.language_checks as checks
+        settings = [{"label": "baseline", "language": "English", "temperature": 0.3, "max_output_tokens": 8192},
+                    {"label": "temperature", "language": "English", "temperature": 0.9, "max_output_tokens": 8192},
+                    {"label": "tokens", "language": "English", "temperature": 0.3, "max_output_tokens": 256}]
+        with patch.object(checks, "generate_advice", side_effect=["one", self.g.GeminiError("quota"), "three"]) as call:
+            rows = checks.run_checks("Save water", settings)
+        self.assertEqual(len(rows), 3)
+        self.assertEqual(rows[1]["error"], "quota")
+        self.assertEqual(len({r["prompt_sent"] for r in rows}), 1)
+        self.assertEqual([(c.kwargs["temperature"], c.kwargs["max_tokens"]) for c in call.call_args_list],
+                         [(0.3, 8192), (0.9, 8192), (0.3, 256)])
+
     def test_default_model(self):
         self.assertEqual(self.g.DEFAULT_MODEL, "gemini-3.5-flash-lite")
         self.assertEqual(self.g.active_model(), "gemini-3.5-flash-lite")
