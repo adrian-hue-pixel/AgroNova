@@ -117,6 +117,13 @@ footer{visibility:hidden;}
 @keyframes twinkle{0%,100%{opacity:0}50%{opacity:var(--twop)}}
 .shoot{position:absolute;top:var(--t);left:var(--l);width:120px;height:1px;background:linear-gradient(90deg,transparent,var(--star2),var(--star));opacity:0;transform:rotate(145deg);animation:shoot var(--d) linear infinite;animation-delay:var(--dl);}
 @keyframes shoot{0%{opacity:0;transform:rotate(145deg) translateX(0)}2%{opacity:.8}10%{opacity:0;transform:rotate(145deg) translateX(520px)}100%{opacity:0;transform:rotate(145deg) translateX(520px)}}
+/* Native controls in current Streamlit versions use React Aria rather than Base Web. */
+.stApp [data-testid="stSelectbox"] [role="group"],.stApp [data-testid="stMultiSelect"] [role="group"],.stApp [data-testid="stTextInput"] div:has(>input),.stApp [data-testid="stNumberInput"] div:has(>input),.stApp [data-testid="stTextArea"] textarea{background:var(--field)!important;color:var(--text)!important;border-color:var(--fborder)!important;}
+.stApp [role="combobox"],.stApp [data-testid="stTextInput"] input,.stApp [data-testid="stNumberInput"] input{background:transparent!important;color:var(--text)!important;-webkit-text-fill-color:var(--text)!important;}
+.stApp [data-testid="stExpander"] details,.stApp [data-testid="stExpander"] summary{background:var(--card)!important;color:var(--text)!important;}
+[role="listbox"]{background:var(--pop)!important;color:var(--text)!important;border-color:var(--border)!important;}
+[role="option"],[role="option"] *{color:var(--text)!important;}
+[role="option"][aria-selected="true"],[role="option"]:hover{background:var(--accent-soft)!important;}
 /* ---------- sidebar ---------- */
 [data-testid="stSidebar"]{background:var(--side)!important;backdrop-filter:saturate(180%) blur(28px);-webkit-backdrop-filter:saturate(180%) blur(28px);border-right:1px solid var(--border);}
 [data-testid="stSidebar"]>div:first-child{background:transparent!important;}
@@ -291,7 +298,7 @@ footer{visibility:hidden;}
 _DARK_ONLY = """
 [data-testid="stAlert"]{background:var(--card)!important;border:1px solid var(--border);border-radius:16px;}
 [data-testid="stAlert"] *{color:var(--text)!important;}
-[data-testid="stDataFrame"],[data-testid="stDataEditor"]{filter:invert(.9) hue-rotate(180deg);border-radius:12px;}
+[data-testid="stDataFrame"],[data-testid="stDataEditor"]{border-radius:12px;}
 """
 _LIGHT_ONLY = """
 [data-testid="stAlert"]{border-radius:16px;animation:riseIn .6s both;}
@@ -320,7 +327,7 @@ def global_css(dark: bool = False, large_text: bool = False, low_data: bool = Fa
         extra.append(_LARGE)
     if low_data:
         extra.append(_LOW_DATA)
-    root = f".stApp{{{_DARK if dark else _LIGHT}color-scheme:{'dark' if dark else 'light'};}}"
+    root = f":root{{{_DARK if dark else _LIGHT}}}.stApp{{{_DARK if dark else _LIGHT}color-scheme:{'dark' if dark else 'light'};}}"
     font = "" if low_data else _FONT_IMPORT   # low-data mode downloads no web font
     return f"<style>{_min(font + root + _CSS + ''.join(extra))}</style>"
 

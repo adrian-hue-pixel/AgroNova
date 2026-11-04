@@ -1,0 +1,41 @@
+[
+  {
+    "time": "2026-11-04T18:09:50.596866+00:00",
+    "model": "gemini-3.5-flash-lite",
+    "question": "I grow tomatoes in Tamil Nadu, India, with limited irrigation. Give three ways to conserve water. Use simple words.",
+    "prompt_sent": "TASK: Answer the farmer's question with region-specific, practical advice.\n\nFARMER'S QUESTION: I grow tomatoes in Tamil Nadu, India, with limited irrigation. Give three ways to conserve water. Use simple words.\n\nLANGUAGE: Answer in simple English.\n\nFORMAT:\nWrite your answer in Markdown using EXACTLY these five headings, in this order,\neach on its own line starting with '## ' (keep the heading words in English):\n\n## Overview\n(2-3 short sentences summarising the situation and the main advice)\n\n## Recommended Actions\n(a numbered list; each item = a bold action name, then one short line saying how to do it)\n\n## Why These Recommendations\n(bullet points that explain the reasoning behind each action, linked to the farmer's region, soil, season or crop)\n\n## Precautions\n(bullet points: safety, uncertainty, things to avoid, and when to call a local agricultural expert)\n\n## Additional Suggestions\n(2-4 bullet points of useful extras, ending with 2 follow-up questions the farmer could ask next)\n\nKeep the whole answer under about 450 words.",
+    "label": "Baseline",
+    "language": "English",
+    "temperature": 0.3,
+    "max_output_tokens": 8192,
+    "answer": "## Overview\nHello! Growing tomatoes in Tamil Nadu with limited water is a big challenge. Here are three simple ways to save water and keep your tomato plants healthy.\n\n## Recommended Actions\n1. **Mulching:** Cover the soil around your tomato plants with a thick layer of dry leaves, straw, or crop waste.\n2. **Drip Irrigation:** Deliver water slowly, drop by drop, straight to the plant roots using simple tubes or bottles.\n3. **Weeding:** Remove unwanted weeds from your field as soon as you see them.\n\n## Why These Recommendations\n* Mulch acts like a blanket, stopping the hot Tamil Nadu sun from drying out the soil too fast.\n* Drip irrigation wastes very little water because it puts moisture right where the tomato roots can drink it.\n* Weeds steal precious water and nutrients from your tomatoes, so clearing them leaves more water for your crop.\n\n## Precautions\n* This is general guidance. Please confirm important decisions with your local Krishi Vigyan Kendra (KVK) agricultural officer.\n* Do not keep the soil too wet, as tomatoes can get root diseases in heavy moisture.\n* If you use any chemical weed killers, always wear protective gloves and follow the product label carefully.\n\n## Additional Suggestions\n* Try planting your tomatoes closer together in rows to shade the soil and reduce water loss.\n* Consider mixing compost into your soil to help it hold water longer.\n* What type of soil do your tomatoes grow in?\n* Would you like tips on how to build a low-cost drip system using plastic bottles?",
+    "error": null,
+    "elapsed_seconds": 22.43
+  },
+  {
+    "time": "2026-11-04T18:10:13.024236+00:00",
+    "model": "gemini-3.5-flash-lite",
+    "question": "I grow tomatoes in Tamil Nadu, India, with limited irrigation. Give three ways to conserve water. Use simple words.",
+    "prompt_sent": "TASK: Answer the farmer's question with region-specific, practical advice.\n\nFARMER'S QUESTION: I grow tomatoes in Tamil Nadu, India, with limited irrigation. Give three ways to conserve water. Use simple words.\n\nLANGUAGE: Answer in simple English.\n\nFORMAT:\nWrite your answer in Markdown using EXACTLY these five headings, in this order,\neach on its own line starting with '## ' (keep the heading words in English):\n\n## Overview\n(2-3 short sentences summarising the situation and the main advice)\n\n## Recommended Actions\n(a numbered list; each item = a bold action name, then one short line saying how to do it)\n\n## Why These Recommendations\n(bullet points that explain the reasoning behind each action, linked to the farmer's region, soil, season or crop)\n\n## Precautions\n(bullet points: safety, uncertainty, things to avoid, and when to call a local agricultural expert)\n\n## Additional Suggestions\n(2-4 bullet points of useful extras, ending with 2 follow-up questions the farmer could ask next)\n\nKeep the whole answer under about 450 words.",
+    "label": "Higher temperature",
+    "language": "English",
+    "temperature": 0.9,
+    "max_output_tokens": 8192,
+    "answer": "## Overview\nHello! Growing tomatoes in Tamil Nadu with limited water is a big challenge. Here are three simple and low-cost ways to save water and keep your tomato plants healthy.\n\n## Recommended Actions\n1. **Use Organic Mulch:** Cover the soil around your tomato plants with a thick layer of dry straw, crop residue, or leaves.\n2. **Make Small Water Basins:** Shape the soil into small circular basins around the base of each tomato plant.\n3. **Water in the Early Morning:** Give water to your crops only before the sun gets hot.\n\n## Why These Recommendations\n* Mulch stops the hot Tamil Nadu sun from baking the soil, which keeps moisture trapped underneath and reduces evaporation.\n* Basins stop water from running away to empty spaces, so every precious drop goes straight to the tomato roots.\n* Early morning watering gives the roots time to drink before the strong daytime heat dries up the soil.\n\n## Precautions\n* This is general guidance only and not a verified local recommendation; please confirm big farming decisions with your local Krishi Vigyan Kendra (KVK) or state agricultural officer.\n* Do not let mulch touch the tomato stem directly, as trapped moisture can cause stem rot.\n* Avoid heavy tillage if your soil is prone to erosion on sloping land.\n\n## Additional Suggestions\n* Mix well-rotted farmyard manure into your soil to help it hold more water naturally.\n* Remove weeds regularly so they do not steal water and food from your tomatoes.\n* Would you like to know how to set up a simple low-cost drip system using recycled plastic bottles?\n* Would you like tips on choosing drought-tolerant tomato varieties suited for your region?",
+    "error": null,
+    "elapsed_seconds": 21.52
+  },
+  {
+    "time": "2026-11-04T18:10:34.545052+00:00",
+    "model": "gemini-3.5-flash-lite",
+    "question": "I grow tomatoes in Tamil Nadu, India, with limited irrigation. Give three ways to conserve water. Use simple words.",
+    "prompt_sent": "TASK: Answer the farmer's question with region-specific, practical advice.\n\nFARMER'S QUESTION: I grow tomatoes in Tamil Nadu, India, with limited irrigation. Give three ways to conserve water. Use simple words.\n\nLANGUAGE: Answer in simple English.\n\nFORMAT:\nWrite your answer in Markdown using EXACTLY these five headings, in this order,\neach on its own line starting with '## ' (keep the heading words in English):\n\n## Overview\n(2-3 short sentences summarising the situation and the main advice)\n\n## Recommended Actions\n(a numbered list; each item = a bold action name, then one short line saying how to do it)\n\n## Why These Recommendations\n(bullet points that explain the reasoning behind each action, linked to the farmer's region, soil, season or crop)\n\n## Precautions\n(bullet points: safety, uncertainty, things to avoid, and when to call a local agricultural expert)\n\n## Additional Suggestions\n(2-4 bullet points of useful extras, ending with 2 follow-up questions the farmer could ask next)\n\nKeep the whole answer under about 450 words.",
+    "label": "Lower token limit",
+    "language": "English",
+    "temperature": 0.3,
+    "max_output_tokens": 256,
+    "answer": "## Overview\nGrowing tomatoes in\n\n*(This answer was cut short by the length limit. Try a shorter question.)*",
+    "error": null,
+    "elapsed_seconds": 12.77
+  }
+]

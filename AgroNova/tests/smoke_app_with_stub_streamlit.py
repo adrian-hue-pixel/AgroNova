@@ -89,6 +89,9 @@ def run(page, submit=False, key_present=True, rich=False, extra_state=None, farm
     g.transcribe_audio = lambda *a, **k: "when to sow paddy"
     g.has_api_key = lambda: key_present
     namespace = runpy.run_path("app.py", run_name="__main__")
+    expected_dark = (extra_state or {}).get("dark_mode", True)
+    if state["dark_mode"] != expected_dark:
+        raise AssertionError("New visits must start dark and explicit theme choices must persist")
     missing = set(namespace["FEATURES"]) - set(namespace["PAGE_LABELS"])
     if missing:
         raise AssertionError(f"Core features missing from navigation: {sorted(missing)}")
@@ -103,6 +106,7 @@ SCENARIOS = {
     "no_key": dict(key_present=False),
     "rich": dict(rich=True),
     "rich_submit": dict(rich=True, submit=True),
+    "light_mode": dict(extra_state={"dark_mode": False}),
     "dark_large_lowdata": dict(rich=True, extra_state={"dark_mode": True, "large_text": True, "low_data": True}),
     "imperial_detailed": dict(rich=True, extra_state={"units": "Imperial (acre, lb, °F, inch)", "detail": "Detailed", "language": "Tamil"}),
 }

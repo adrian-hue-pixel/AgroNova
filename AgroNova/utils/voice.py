@@ -57,16 +57,28 @@ def speak_html(text: str, language: str, dark: bool = False, label: str = "Liste
 <script>
 const TEXT={payload}, LANG={lang};
 const msg=document.getElementById('msg');
-function speak(){{
+let playRun=0;
+async function speak(){{
   if(!('speechSynthesis' in window)){{msg.textContent='This browser cannot read aloud. Try Chrome or Safari.';return;}}
+  const run=++playRun;
   speechSynthesis.cancel();
-  const voices=speechSynthesis.getVoices();
+  let voices=speechSynthesis.getVoices();
+  if(!voices.length){{
+    await new Promise(resolve=>{{
+      const done=()=>{{speechSynthesis.removeEventListener('voiceschanged',done);resolve();}};
+      speechSynthesis.addEventListener('voiceschanged',done,{{once:true}});
+      setTimeout(done,1500);
+    }});
+    voices=speechSynthesis.getVoices();
+  }}
+  if(run!==playRun)return;
   const base=LANG.slice(0,2).toLowerCase();
   const voice=voices.find(v=>v.lang&&v.lang.toLowerCase()===LANG.toLowerCase())||voices.find(v=>v.lang&&v.lang.toLowerCase().startsWith(base));
-  msg.textContent=voice?'':'No voice for this language was found on this device, so the default voice is used. You can install one in your phone settings.';
+  if(!voice){{msg.textContent='No voice for this answer language is installed in this browser. Add a matching voice in your device settings or read the answer below.';return;}}
+  msg.textContent='';
   const parts=TEXT.match(/[^.!?\\n\\u0964]+[.!?\\u0964]?/g)||[TEXT];
   parts.forEach(p=>{{ if(!p.trim())return; const u=new SpeechSynthesisUtterance(p.trim()); u.lang=LANG; if(voice)u.voice=voice; u.rate=0.95; speechSynthesis.speak(u); }});
 }}
 document.getElementById('play').onclick=speak;
-document.getElementById('stop').onclick=()=>speechSynthesis.cancel();
+document.getElementById('stop').onclick=()=>{{++playRun;speechSynthesis.cancel();}};
 </script>"""

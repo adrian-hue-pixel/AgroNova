@@ -18,11 +18,11 @@ Market Prices uses official Indian mandi data when a data.gov.in key is configur
 
 On 4 November 2026, the deployed app returned answers to six regional prompts covering India, Ghana and Canada. Seven responses were saved: one V1/V2 comparison and five additional V2 answers. Full original prompts, model settings, responses and qualitative review notes are in [the real API log](docs/validation/validation_log.json).
 
-The Tamil Nadu crop comparison produced 577 words for V1 and 282 for V2. V2 followed the five-heading format and included a local expert referral. This is evidence of formatting changes, not proof of greater factual accuracy. Review found assumptions about future rain, seed reuse, pest controls and tillage. The prompt rules were strengthened in response. Revised prompts still need a fresh live evaluation.
+The Tamil Nadu crop comparison produced 577 words for V1 and 282 for V2. V2 followed the five-heading format and included a local expert referral. This is evidence of formatting changes, not proof of greater factual accuracy. Review found assumptions about future rain, seed reuse, pest controls and tillage. The prompt rules were strengthened in response. The revised prompt has also been exercised by the language and parameter checks below. Local agronomic validation remains important.
 
 The log preserves the original unchecked checklist fields. They are not passed quality scores. [The review summary](docs/validation/review.md) records what was checked, unresolved issues and the sources used.
 
-Local verification after the code fixes: 58 automated tests passed and 125 mocked page scenarios passed. Mocked checks test application logic and code paths. They do not replace real API testing or checks on physical devices.
+Local verification after the code fixes: 60 automated tests passed and 142 mocked page scenarios passed. Mocked checks test application logic and code paths. They do not replace real API testing or checks on physical devices.
 
 ## Screenshots
 
@@ -69,7 +69,7 @@ python -m unittest discover -s tests -v
 python tests/smoke_app_with_stub_streamlit.py
 ```
 
-Before submission, open the public app on a physical phone and laptop, generate an answer, check feedback and downloads, and record the results. Controlled temperature and token-limit experiments remain to be documented. A deployment link alone does not demonstrate every assessment criterion.
+The owner reports the earlier physical-device check completed. Tamil microphone recognition and device-specific read-aloud still need an own-device check. Controlled temperature and token-limit experiments are recorded in [the final check summary](docs/validation/final_checks.md). A deployment link alone does not demonstrate every assessment criterion.
 
 ## Safety and data
 
@@ -85,3 +85,9 @@ Mentor: Aruljothi M
 School: Jain Vidyalaya IBCP World School
 
 Built for the Generative AI FA-1 and FA-2 Smart Farming Assistant assessment.
+
+## Latest language and theme checks
+
+Fresh visits now start in dark mode. Light mode has animated leaves, floating pollen and moving glows, with low-data and reduced-motion support. Ask by Voice automatically matches Tamil script, or lets the farmer choose a reply language explicitly.
+
+All 12 answer languages returned real responses. A synthetic Tamil recording produced a Tamil transcript and a Tamil written answer while the sidebar language was English. Device voices control read-aloud availability. The player explains a missing Tamil voice rather than using the wrong default voice. See the [check summary](docs/validation/final_checks.md), [parameter results](docs/validation/parameter_checks.json), [language results](docs/validation/language_checks.json) and [Tamil audio evidence](docs/validation/tamil_voice.json).
